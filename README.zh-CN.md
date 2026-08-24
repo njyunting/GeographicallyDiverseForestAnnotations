@@ -10,9 +10,10 @@
 [![状态](https://img.shields.io/badge/status-private%20pre--release-06251D?style=for-the-badge)](#-发布状态)
 [![标注](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#️-标注生产流程)
 [![范围](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#️-全球覆盖)
+[![示例包](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/README.zh-CN.md)
 [![论文](https://img.shields.io/badge/data%20descriptor-in%20preparation-F0A000?style=for-the-badge)](#-引用)
 
-[项目概述](#-项目概述) · [动态演示](#-标注动态演示) · [数据组成](#-数据集组成) · [全球覆盖](#️-全球覆盖) · [标注流程](#️-标注生产流程) · [质量控制](#-质量控制) · [贡献者](#-贡献者与机构) · [数据获取](#-数据获取) · [引用](#-引用)
+[项目概述](#-项目概述) · [动态演示](#-标注动态演示) · [真实示例](#-真实示例数据包) · [数据组成](#-数据集组成) · [全球覆盖](#️-全球覆盖) · [标注流程](#️-标注生产流程) · [质量控制](#-质量控制) · [贡献者](#-贡献者与机构) · [数据获取](#-数据获取) · [引用](#-引用)
 
 </div>
 
@@ -78,6 +79,23 @@ Global Forest Crown Annotations 汇集了三类从不同空间尺度描述森林
 </table>
 
 两个预览动画都会在 GitHub 中自动播放并循环。链接的 MP4 文件保留了更流畅的运动和更高的视觉质量。
+
+## 🚀 真实示例数据包
+
+仓库提供一个已经完成完整性核验的轻量示例包，包含 **12组真实样例**，可立即用于检查数据格式和开发读取程序：
+
+| 树冠区域掩膜 | 树顶点 | 单木树冠实例 |
+|:--:|:--:|:--:|
+| 4个场景 | 4个场景 | 4幅影像 |
+| PNG/TIFF二值掩膜 | CSV/JSON点坐标 | RGB、轮廓图、实例TIFF和面积表 |
+
+<div align="center">
+
+### [查看真实示例数据包 →](examples/real_sample_package_v1/README.zh-CN.md)
+
+<sub>包含中英文说明、文件清单和SHA-256校验和。</sub>
+
+</div>
 
 ## 🧩 数据集组成
 

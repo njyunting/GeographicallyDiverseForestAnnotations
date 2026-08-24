@@ -10,9 +10,10 @@
 [![Status](https://img.shields.io/badge/status-private%20pre--release-06251D?style=for-the-badge)](#-release-status)
 [![Annotation](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#-annotation-production)
 [![Coverage](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#-global-coverage)
+[![Samples](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/)
 [![Paper](https://img.shields.io/badge/data%20descriptor-in%20preparation-F0A000?style=for-the-badge)](#-citation)
 
-[Overview](#-overview) · [Demos](#-annotation-demos) · [Dataset](#-dataset-components) · [Coverage](#-global-coverage) · [Annotations](#-annotation-production) · [Quality control](#-quality-control) · [Contributors](#-contributors-and-institutions) · [Access](#-data-access) · [Citation](#-citation)
+[Overview](#-overview) · [Demos](#-annotation-demos) · [Real samples](#-real-sample-package) · [Dataset](#-dataset-components) · [Coverage](#-global-coverage) · [Annotations](#-annotation-production) · [Quality control](#-quality-control) · [Contributors](#-contributors-and-institutions) · [Access](#-data-access) · [Citation](#-citation)
 
 </div>
 
@@ -78,6 +79,23 @@ These products are complementary rather than interchangeable. Together, they pro
 </table>
 
 Both previews autoplay and loop on GitHub. The linked MP4 files preserve smoother motion and higher visual quality.
+
+## 🚀 Real sample package
+
+The repository includes a compact, integrity-checked package of **12 real examples** for immediate format inspection and loader development:
+
+| Canopy-region masks | Treetop points | Individual-crown polygons |
+|:--:|:--:|:--:|
+| 4 scenes | 4 scenes | 4 images |
+| Binary PNG/TIFF masks | CSV/JSON coordinates | RGB, contours, instance TIFF and area CSV |
+
+<div align="center">
+
+### [Explore the real sample package →](examples/real_sample_package_v1/)
+
+<sub>Includes bilingual documentation, a file manifest and SHA-256 checksums.</sub>
+
+</div>
 
 ## 🧩 Dataset components
 
