@@ -6,11 +6,11 @@ This compact package contains real, human-verified examples from the three annot
 
 ## Package summary
 
-| Component | Samples | Included data |
-|:--|--:|:--|
-| Canopy-region masks | 4 | Overlay previews, binary PNG/TIFF masks and coverage statistics |
-| Treetop points | 4 | Overlay previews and point coordinates in CSV/JSON |
-| Individual-crown polygons | 4 | RGB images, contour previews, TIFF instance masks and crown-area tables |
+| Component | Samples | Spatial coverage per scene | Included data |
+|:--|--:|:--:|:--|
+| Canopy-region masks | 4 | **2 km × 2 km (4 km²)** | Overlay previews, binary PNG/TIFF masks and coverage statistics |
+| Treetop points | 4 | **2 km × 2 km (4 km²)** | Overlay previews and point coordinates in CSV/JSON |
+| Individual-crown polygons | 4 | — | RGB images, contour previews, TIFF instance masks and crown-area tables |
 
 The canopy examples span approximately 17–93% labelled canopy coverage. The treetop examples span 50–358 independently hand-drawn points per scene. The crown examples contain 163–243 manually delineated instances per image.
 
@@ -33,6 +33,7 @@ Each component directory contains its own README and one folder per sample. `man
 - Image coordinates use a top-left origin, with `x` increasing rightward and `y` increasing downward.
 - Canopy masks are binary raster labels aligned to 1024 × 1024 preview coordinates.
 - Treetop coordinates are integer pixel locations in 1024 × 1024 scenes.
+- Each canopy-region and treetop scene represents a ground area of 2 km × 2 km (4 km²).
 - Individual-crown TIFF masks use `0` for background and positive integer IDs for crown instances in 512 × 512 images.
 
 ## Provenance note

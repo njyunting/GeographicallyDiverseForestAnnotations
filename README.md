@@ -51,8 +51,8 @@ These products are complementary rather than interchangeable. Together, they pro
 
 | Component | Released unit | Verified scale | Annotation route | Primary colour |
 |:--|:--|--:|:--|:--:|
-| **Canopy-region masks** | Raster mosaic | **27 mosaics** | **100% manual** | 🟢 |
-| **Treetop points** | Scene-level point layer | **1,306,763 effective markers in 26 SVG scenes** | **100% manual** | 🔴 |
+| **Canopy-region masks** | 2 km × 2 km raster scene | **27 mosaics** | **100% manual** | 🟢 |
+| **Treetop points** | 2 km × 2 km point scene | **1,306,763 effective markers in 26 SVG scenes** | **100% manual** | 🔴 |
 | **Individual-crown polygons** | Crown instance | **459,756 crowns in 6,802 RGB images** | ≈70% direct manual; ≈30% model candidates, all corrected and confirmed by humans | 🟠 |
 
 ## 🎥 Annotation demos
@@ -105,6 +105,7 @@ Canopy-region masks represent the spatial extent of visible tree canopy as raste
 |:--|:--|
 | **Representation** | Raster mask aligned with source imagery |
 | **Annotation unit** | Continuous canopy region |
+| **Spatial coverage per scene** | **2 km × 2 km (4 km²)** |
 | **Production** | Fully manual delineation |
 | **Current verified scale** | 27 mosaics |
 | **Typical task** | Semantic segmentation / canopy-extent estimation |
@@ -117,6 +118,7 @@ Treetop points record the interpreted location of individual tree tops. Because 
 |:--|:--|
 | **Representation** | Point annotations stored in scene-level vector layers |
 | **Annotation unit** | One interpreted treetop location |
+| **Spatial coverage per scene** | **2 km × 2 km (4 km²)** |
 | **Production** | Fully manual placement |
 | **Current verified scale** | 1,306,763 effective markers across 26 SVG scenes |
 | **Typical task** | Point detection / tree counting / density estimation |
