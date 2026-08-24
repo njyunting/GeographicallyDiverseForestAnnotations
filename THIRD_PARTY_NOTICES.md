@@ -1,37 +1,15 @@
-# Third-party imagery and rights notices / 第三方影像与权利说明
+# Third-party imagery notice / 第三方影像说明
 
-This register separates author-generated annotations from source imagery. A file's presence in this private repository does not establish a right to redistribute the underlying imagery.
+The licence in [`LICENSE-DATA.md`](LICENSE-DATA.md) applies to canopy-region masks, treetop-point records, individual-crown annotations and accompanying metadata created for this dataset.
 
-本清单用于区分作者生成的标注与原始影像。文件出现在当前私有仓库中，并不表示已经取得公开再分发其底层影像的权利。
+Satellite, aerial and other source imagery supplied by third parties is excluded from that licence. Source imagery, imagery-bearing previews, videos, animations, composite figures and thumbnails remain subject to the copyright, attribution requirements and terms of use of their respective providers.
 
-## Rights status by asset class
+Where source-specific terms are supplied in dataset metadata, those terms govern use of the corresponding imagery. The CC BY 4.0 licence for annotation data does not modify or replace third-party rights.
 
-| Asset class | Examples | Annotation-data status | Source-imagery status | Public-release action |
-|---|---|---|---|---|
-| Canopy-region annotations | Binary masks, coverage tables | Intended CC BY 4.0 | Embedded imagery not covered | Publish masks and metadata; publish imagery only after source-level clearance |
-| Treetop annotations | Point CSV/JSON | Intended CC BY 4.0 | Embedded imagery not covered | Publish coordinates and metadata; separately audit preview/source images |
-| Individual-crown annotations | Instance masks, polygons, area tables | Intended CC BY 4.0 | Source JPG and imagery-bearing contour previews not covered | Publish annotations; clear, replace or omit restricted source imagery |
-| README atlas and banner | `assets/readme/` composites and galleries | Annotation overlays may be author-generated | Every embedded scene requires review | Retain only assets with documented redistribution permission |
-| Videos and animations | MP4/WebP demonstrations | Annotation overlays may be author-generated | Video frames may include restricted imagery | Review every source video and record provider/permission |
-| Global distribution figure | Map plus representative imagery | Map symbols and layout may be author-generated | Embedded representative scenes require review | Clear each scene independently before public release |
+---
 
-## Required provenance fields
+[`LICENSE-DATA.md`](LICENSE-DATA.md) 中的许可适用于本数据集的树冠区域掩膜、树顶点记录、单木树冠标注及配套元数据。
 
-Before public release, each source-image family must have the following fields completed in the release manifest:
+第三方提供的卫星影像、航空影像及其他原始影像不属于该许可的授权范围。原始影像以及包含这些影像的预览图、视频、动画、组合图和缩略图，仍受相应提供方的版权、署名要求及使用条款约束。
 
-- provider or rights holder;
-- product, platform or collection name;
-- image or scene identifier, where available;
-- acquisition or access date;
-- source URL or acquisition route;
-- applicable licence or terms-of-use URL;
-- whether redistribution is permitted;
-- required attribution wording;
-- permission evidence or approval record, where required;
-- resulting action: `release`, `replace`, `link only`, or `omit`.
-
-## Important limitation
-
-Excluding an image from [`LICENSE-DATA.md`](LICENSE-DATA.md) does not by itself make redistribution lawful. Any image for which redistribution permission cannot be documented must be removed, replaced with openly licensed imagery, or represented only through a source reference and independently releasable annotation data.
-
-The working asset-level review is maintained in [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md).
+数据集元数据中列出的来源专属条款适用于对应影像。标注数据的 CC BY 4.0 许可不会修改或替代第三方权利。

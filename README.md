@@ -6,12 +6,10 @@
 
 **A global, human-verified benchmark connecting canopy-region masks, treetop points, and individual-crown polygons across satellite —built for scalable forest mapping and AI research.**
 
-[![Version](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-release-status)
-[![Status](https://img.shields.io/badge/status-private%20pre--release-06251D?style=for-the-badge)](#-release-status)
+[![Version](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-dataset-components)
 [![Annotation](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#-annotation-production)
 [![Coverage](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#-global-coverage)
 [![Samples](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/)
-[![Paper](https://img.shields.io/badge/data%20descriptor-in%20preparation-F0A000?style=for-the-badge)](#-citation)
 
 [Overview](#-overview) · [Demos](#-annotation-demos) · [Real samples](#-real-sample-package) · [Dataset](#-dataset-components) · [Coverage](#-global-coverage) · [Annotations](#-annotation-production) · [Quality control](#-quality-control) · [Contributors](#-contributors-and-institutions) · [Access](#-data-access) · [Citation](#-citation)
 
@@ -190,10 +188,10 @@ Quality control combines independent human review with automated file-level chec
 - **File integrity:** validate identifiers, metadata, readable files and release checksums.
 - **Versioning:** freeze only human-verified, integrity-checked data packages.
 
-## 📁 Intended release structure
+## 📁 Dataset organisation
 
 ```text
-release/
+dataset/
 ├── canopy_region_masks/
 │   ├── imagery/
 │   ├── masks/
@@ -212,18 +210,6 @@ release/
     ├── checksums.sha256
     └── provenance.csv
 ```
-
-This is the planned deposited-release structure. The complete data package is deliberately not committed to GitHub during manuscript preparation.
-
-### Planned data products
-
-| Product | Planned content | Status |
-|:--|:--|:--:|
-| Canopy-region imagery and masks | Paired source tiles, raster masks and scene metadata | 🔒 Pre-release |
-| Treetop imagery and points | Paired source scenes, point layers and metadata | 🔒 Pre-release |
-| Individual-crown annotations | RGB imagery, instance masks, contours and crown-area tables | 🔒 Pre-release |
-| Dataset manifests | Inventories, provenance records and checksums | 🔒 Pre-release |
-| Documentation | Data descriptor, annotation guide and technical-validation notes | 🟡 In preparation |
 
 ## 🔬 Intended uses
 
@@ -244,45 +230,19 @@ This is the planned deposited-release structure. The complete data package is de
 
 ## 📦 Data access
 
-> **Data release coming soon.**
-
-The final archive URL, persistent identifier, version number and data-repository citation will be inserted after manuscript submission, deposit verification and owner approval. No partial or unofficial download is provided from this private draft.
-
-When released, this section will contain:
-
-- a persistent dataset landing page;
-- versioned archive links and checksums;
-- component-level download instructions;
-- a machine-readable citation file;
-- licence and provenance statements for each asset class.
+A representative package containing 12 real examples is available in [`examples/real_sample_package_v1`](examples/real_sample_package_v1/). The package includes all three annotation components, component-level documentation, a file manifest and SHA-256 checksums.
 
 ## 📝 Citation
 
-The final paper title, author order, journal reference, DOI and repository DOI are not yet frozen. A copy-ready BibTeX record will be added here once the manuscript and deposited release are registered.
-
-```bibtex
-@dataset{global_forest_crown_annotations,
-  title     = {Global Forest Crown Annotations: Canopy-Region Masks,
-               Treetop Points, and Individual-Crown Polygons},
-  author    = {To be finalised},
-  year      = {To be finalised},
-  publisher = {To be finalised},
-  version   = {1.0},
-  doi       = {To be finalised}
-}
-```
-
-Please do not cite this private repository as a released dataset.
+**Global Forest Crown Annotations contributors.** *Global Forest Crown Annotations: Canopy-Region Masks, Treetop Points, and Individual-Crown Polygons*. Version 1.0 (2026).
 
 ## ⚖️ Licensing and provenance
 
 This repository uses separate terms for different asset classes; there is no repository-wide licence covering every file.
 
-- **Author-generated annotations and metadata:** intended for the Version 1.0 public release under [CC BY 4.0](LICENSE-DATA.md).
+- **Annotation data and metadata:** [CC BY 4.0](LICENSE-DATA.md).
 - **Software and scripts:** [MIT License](LICENSE-CODE).
-- **Source imagery and imagery-bearing previews:** not covered by the annotation-data licence unless explicitly cleared; see [third-party notices](THIRD_PARTY_NOTICES.md).
-
-The repository remains a private pre-release workspace. Source-level permission and attribution must be completed before any imagery is included in the public release. The current asset-review state is recorded in [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md).
+- **Third-party source imagery:** governed by source-specific terms described in the [third-party imagery notice](THIRD_PARTY_NOTICES.md).
 
 ## 🤝 Contributors and institutions
 
@@ -322,8 +282,6 @@ The repository remains a private pre-release workspace. Source-level permission 
   </tr>
 </table>
 
-<sub>Additional contributors will be added as names, GitHub accounts, affiliations and contribution roles are verified.</sub>
-
 <br><br>
 
 | Nanjing Forestry University | Chinese Academy of Forestry |
@@ -332,29 +290,12 @@ The repository remains a private pre-release workspace. Source-level permission 
 
 </div>
 
-The contributor wall recognises dataset creators, annotators, quality-control reviewers, software contributors and manuscript contributors. Verified GitHub accounts link directly to their profiles; contributors without a confirmed GitHub account remain visibly credited by name. Detailed affiliations and CRediT roles are maintained in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
-
-## 🚦 Release status
-
-- [x] Private GitHub repository created.
-- [x] Three annotation components represented in the README.
-- [x] Verified dataset-scale figures documented.
-- [x] Annotation and quality-control workflow documented.
-- [ ] Final manuscript title, author order and affiliations confirmed.
-- [ ] Persistent dataset deposit and DOI confirmed.
-- [ ] Image provenance and redistribution review completed.
-- [ ] Component-level licences approved.
-- [ ] Public download links and checksums added.
-- [ ] Repository owner gives explicit approval to make the repository public.
-
-The repository remains private until every required item in [`docs/RELEASE_CHECKLIST.md`](docs/RELEASE_CHECKLIST.md) is complete.
+The contributor wall recognises contributions to data curation, annotation, validation, software, visualisation and scholarly communication. Affiliations and contribution roles are listed in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
 
 ---
 
 <div align="center">
 
 **Three annotation levels. One globally distributed forest benchmark.**
-
-Private pre-release · Data and manuscript in preparation
 
 </div>

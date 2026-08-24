@@ -2,7 +2,7 @@
 
 [中文说明](README.zh-CN.md)
 
-This compact package contains real, human-verified examples from the three annotation components of **Global Forest Crown Annotations**. It is designed for format inspection, visual review and loader development before the complete versioned dataset is released.
+This compact package contains real, human-verified examples from the three annotation components of **Global Forest Crown Annotations**. It supports format inspection, visualisation and data-loader development.
 
 ## Package summary
 
@@ -41,4 +41,4 @@ All annotations in this package are human-produced or human-corrected release ex
 
 ## Access and licence
 
-This is a private pre-release demonstration package. Author-generated binary masks, point records, instance masks, crown-area tables and package metadata are intended for the Version 1.0 release under [CC BY 4.0](../../LICENSE-DATA.md). Source images and imagery-bearing overlays or previews are excluded unless separately cleared; see the repository [third-party notices](../../THIRD_PARTY_NOTICES.md). The dataset DOI and final preferred citation will be supplied with the deposited Version 1.0 release.
+Binary masks, point records, instance masks, crown-area tables and package metadata are licensed under [CC BY 4.0](../../LICENSE-DATA.md). Source images and imagery-bearing overlays or previews remain governed by source-specific terms described in the [third-party imagery notice](../../THIRD_PARTY_NOTICES.md).

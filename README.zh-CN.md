@@ -6,12 +6,10 @@
 
 **一个全球性、经人工核验的森林基准数据集，联合树冠区域掩膜、树顶点和单木树冠多边形三类标注，服务于大范围森林制图与人工智能研究。**
 
-[![版本](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-发布状态)
-[![状态](https://img.shields.io/badge/status-private%20pre--release-06251D?style=for-the-badge)](#-发布状态)
+[![版本](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-数据集组成)
 [![标注](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#️-标注生产流程)
 [![范围](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#️-全球覆盖)
 [![示例包](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/README.zh-CN.md)
-[![论文](https://img.shields.io/badge/data%20descriptor-in%20preparation-F0A000?style=for-the-badge)](#-引用)
 
 [项目概述](#-项目概述) · [动态演示](#-标注动态演示) · [真实示例](#-真实示例数据包) · [数据组成](#-数据集组成) · [全球覆盖](#️-全球覆盖) · [标注流程](#️-标注生产流程) · [质量控制](#-质量控制) · [贡献者](#-贡献者与机构) · [数据获取](#-数据获取) · [引用](#-引用)
 
@@ -190,10 +188,10 @@ Global Forest Crown Annotations 汇集了三类从不同空间尺度描述森林
 - **文件完整性：**验证标识符、元数据、文件可读性和发布校验和。
 - **版本管理：**仅冻结通过人工核验和完整性检查的数据包。
 
-## 📁 计划发布结构
+## 📁 数据组织
 
 ```text
-release/
+dataset/
 ├── canopy_region_masks/
 │   ├── imagery/
 │   ├── masks/
@@ -212,18 +210,6 @@ release/
     ├── checksums.sha256
     └── provenance.csv
 ```
-
-以上为计划中的正式存档结构。在论文准备阶段，完整数据包不会提交到 GitHub 仓库。
-
-### 计划发布的数据产品
-
-| 产品 | 计划内容 | 状态 |
-|:--|:--|:--:|
-| 树冠区域影像与掩膜 | 配对源影像、栅格掩膜和场景元数据 | 🔒 发布前 |
-| 树顶点影像与点标注 | 配对源场景、点图层和元数据 | 🔒 发布前 |
-| 单木树冠标注 | RGB 影像、实例掩膜、轮廓和树冠面积表 | 🔒 发布前 |
-| 数据集清单 | 文件清单、来源记录和校验和 | 🔒 发布前 |
-| 文档 | Data Descriptor、标注指南和技术验证说明 | 🟡 准备中 |
 
 ## 🔬 预期用途
 
@@ -244,45 +230,19 @@ release/
 
 ## 📦 数据获取
 
-> **数据即将发布。**
-
-正式压缩包地址、永久标识符、版本号和数据仓库引用将在论文投稿、数据存档核验及仓库所有者批准后补充。本私有草稿不提供局部或非官方数据下载。
-
-正式发布后，本节将提供：
-
-- 永久数据集落地页；
-- 带版本号的压缩包链接和校验和；
-- 各数据组成部分的下载说明；
-- 机器可读的引用文件；
-- 不同资产类别的许可与来源说明。
+[`examples/real_sample_package_v1`](examples/real_sample_package_v1/README.zh-CN.md) 提供包含12组真实样例的代表性数据包，覆盖三类标注，并附有分类说明、文件清单和 SHA-256 校验和。
 
 ## 📝 引用
 
-论文最终题目、作者顺序、期刊信息、论文 DOI 和数据仓库 DOI 尚未冻结。论文和存档数据完成注册后，将在此提供可直接复制的 BibTeX 记录。
-
-```bibtex
-@dataset{global_forest_crown_annotations,
-  title     = {Global Forest Crown Annotations: Canopy-Region Masks,
-               Treetop Points, and Individual-Crown Polygons},
-  author    = {To be finalised},
-  year      = {To be finalised},
-  publisher = {To be finalised},
-  version   = {1.0},
-  doi       = {To be finalised}
-}
-```
-
-请勿将本私有仓库作为已发布数据集引用。
+**Global Forest Crown Annotations contributors.** *Global Forest Crown Annotations: Canopy-Region Masks, Treetop Points, and Individual-Crown Polygons*. Version 1.0 (2026).
 
 ## ⚖️ 许可与来源
 
 本仓库针对不同类型的材料采用不同条款，不存在覆盖所有文件的仓库级统一许可。
 
-- **作者生成的标注与元数据：** 拟在 Version 1.0 正式公开时采用 [CC BY 4.0](LICENSE-DATA.md)。
+- **标注数据与元数据：** 采用 [CC BY 4.0](LICENSE-DATA.md)。
 - **软件与脚本：** 采用 [MIT License](LICENSE-CODE)。
-- **原始影像及包含原图的预览材料：** 除非逐项明确完成授权，否则不属于标注数据许可范围；详见[第三方影像与权利说明](THIRD_PARTY_NOTICES.md)。
-
-仓库目前仍为私有预发布工作区。任何影像进入公开版本前，都必须完成来源级授权与署名核验。当前资产审核状态记录在 [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md)。
+- **第三方原始影像：** 遵循[第三方影像说明](THIRD_PARTY_NOTICES.md)所列的来源专属条款。
 
 ## 🤝 贡献者与机构
 
@@ -322,8 +282,6 @@ release/
   </tr>
 </table>
 
-<sub>后续将在姓名、GitHub 账户、所属机构和贡献角色核验完成后继续加入其他贡献者。</sub>
-
 <br><br>
 
 | 南京林业大学 | 中国林业科学研究院 |
@@ -332,29 +290,12 @@ release/
 
 </div>
 
-贡献者头像墙用于展示数据集构建、人工标注、质量复核、软件开发和论文撰写等工作的参与者。已经核验的 GitHub 账户可直接点击进入个人主页；暂未确认 GitHub 账户的人员仍以姓名清晰展示。详细的单位信息和 CRediT 贡献角色统一维护在 [`CONTRIBUTORS.md`](CONTRIBUTORS.md) 中。
-
-## 🚦 发布状态
-
-- [x] 已创建私有 GitHub 仓库。
-- [x] README 已包含三类标注产品。
-- [x] 已记录经过核验的数据规模。
-- [x] 已说明标注流程和质量控制流程。
-- [ ] 最终论文题目、作者顺序和作者单位已确认。
-- [ ] 永久数据存档和 DOI 已确认。
-- [ ] 影像来源和再分发权审核已完成。
-- [ ] 各数据组成部分的许可已批准。
-- [ ] 已添加公开下载链接和校验和。
-- [ ] 仓库所有者明确批准将仓库设为公开。
-
-在 [`docs/RELEASE_CHECKLIST.md`](docs/RELEASE_CHECKLIST.md) 中的所有必要项目完成之前，本仓库将保持私有。
+贡献者头像墙展示数据整理、人工标注、质量验证、软件开发、可视化和学术传播等方面的贡献。所属机构和贡献角色列于 [`CONTRIBUTORS.md`](CONTRIBUTORS.md)。
 
 ---
 
 <div align="center">
 
 **三种标注尺度，一个全球分布的森林基准数据集。**
-
-私有预发布 · 数据与论文准备中
 
 </div>
