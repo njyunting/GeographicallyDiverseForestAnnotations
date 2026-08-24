@@ -276,7 +276,13 @@ Please do not cite this private repository as a released dataset.
 
 ## ⚖️ Licensing and provenance
 
-Licences for annotation products, code and source imagery will be stated separately. No repository-wide licence is assigned during the private-draft stage. See [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md) for the current asset-review state.
+This repository uses separate terms for different asset classes; there is no repository-wide licence covering every file.
+
+- **Author-generated annotations and metadata:** intended for the Version 1.0 public release under [CC BY 4.0](LICENSE-DATA.md).
+- **Software and scripts:** [MIT License](LICENSE-CODE).
+- **Source imagery and imagery-bearing previews:** not covered by the annotation-data licence unless explicitly cleared; see [third-party notices](THIRD_PARTY_NOTICES.md).
+
+The repository remains a private pre-release workspace. Source-level permission and attribution must be completed before any imagery is included in the public release. The current asset-review state is recorded in [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md).
 
 ## 🤝 Contributors and institutions
 

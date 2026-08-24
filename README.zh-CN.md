@@ -276,7 +276,13 @@ release/
 
 ## ⚖️ 许可与来源
 
-标注产品、代码和源影像将分别说明许可条款。私有草稿阶段暂不设置覆盖整个仓库的统一许可。当前资产审核状态请参阅 [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md)。
+本仓库针对不同类型的材料采用不同条款，不存在覆盖所有文件的仓库级统一许可。
+
+- **作者生成的标注与元数据：** 拟在 Version 1.0 正式公开时采用 [CC BY 4.0](LICENSE-DATA.md)。
+- **软件与脚本：** 采用 [MIT License](LICENSE-CODE)。
+- **原始影像及包含原图的预览材料：** 除非逐项明确完成授权，否则不属于标注数据许可范围；详见[第三方影像与权利说明](THIRD_PARTY_NOTICES.md)。
+
+仓库目前仍为私有预发布工作区。任何影像进入公开版本前，都必须完成来源级授权与署名核验。当前资产审核状态记录在 [`docs/DRAFT_ASSET_MANIFEST.md`](docs/DRAFT_ASSET_MANIFEST.md)。
 
 ## 🤝 贡献者与机构
 

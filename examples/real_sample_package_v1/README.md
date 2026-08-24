@@ -41,4 +41,4 @@ All annotations in this package are human-produced or human-corrected release ex
 
 ## Access and licence
 
-This is a private pre-release demonstration package. Final source-imagery rights, annotation-product licence, dataset DOI and preferred citation will be supplied with the deposited Version 1.0 release. Inclusion in this private repository does not yet grant public redistribution rights.
+This is a private pre-release demonstration package. Author-generated binary masks, point records, instance masks, crown-area tables and package metadata are intended for the Version 1.0 release under [CC BY 4.0](../../LICENSE-DATA.md). Source images and imagery-bearing overlays or previews are excluded unless separately cleared; see the repository [third-party notices](../../THIRD_PARTY_NOTICES.md). The dataset DOI and final preferred citation will be supplied with the deposited Version 1.0 release.
