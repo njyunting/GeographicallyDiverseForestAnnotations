@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Bai Chenhui contributor avatar</title>
+  <desc id="desc">Golden-green circular avatar with the initials BC.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d99a00"/>
+      <stop offset="1" stop-color="#596d2c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="76" fill="url(#bg)"/>
+  <circle cx="80" cy="80" r="73" fill="none" stroke="#ffe39a" stroke-width="2" opacity=".9"/>
+  <text x="80" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#ffffff">BC</text>
+</svg>

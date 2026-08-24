@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.next/
+.vinext/
+.env
+.env.*
+.openai/
+.superpowers/
+*.log
+
+# The repository draft is README-first; do not publish the abandoned site prototype.
+/site/
+/preview/
+
+# Local working assets superseded by the approved README media.
+/assets/readme/*.png
+/assets/readme/*-annotation-demo.gif
+/assets/readme/annotation-tour.gif
+/assets/readme/annotation-tour-poster.webp
+/assets/readme/forest-mountains-temperate.webp
+/assets/readme/individual-crowns.webp
