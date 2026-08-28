@@ -204,9 +204,7 @@ dataset/
 │   └── metadata/
 ├── individual_crown_polygons/
 │   ├── imagery/
-│   ├── instance_masks/
-│   ├── contours/
-│   └── crown_areas/
+│   └── instance_masks/
 └── manifests/
     ├── file_inventory.csv
     ├── checksums.sha256
@@ -233,10 +231,8 @@ dataset/
 ## 📦 数据获取
 
 [`examples/real_sample_package_v1`](examples/real_sample_package_v1/README.zh-CN.md) 提供包含12组真实样例的代表性数据包，覆盖三类标注，并附有分类说明、文件清单和 SHA-256 校验和。
+完整数据集请于 https://doi.org/10.5281/zenodo.22070748获取
 
-## 📝 引用
-
-**Global Forest Crown Annotations contributors.** *Global Forest Crown Annotations: Canopy-Region Masks, Treetop Points, and Individual-Crown Polygons*. Version 1.0 (2026).
 
 ## ⚖️ 许可与来源
 
