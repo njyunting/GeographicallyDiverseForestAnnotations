@@ -204,9 +204,7 @@ dataset/
 │   └── metadata/
 ├── individual_crown_polygons/
 │   ├── imagery/
-│   ├── instance_masks/
-│   ├── contours/
-│   └── crown_areas/
+│   └──instance_masks/
 └── manifests/
     ├── file_inventory.csv
     ├── checksums.sha256
@@ -233,10 +231,7 @@ dataset/
 ## 📦 Data access
 
 A representative package containing 12 real examples is available in [`examples/real_sample_package_v1`](examples/real_sample_package_v1/). The package includes all three annotation components, component-level documentation, a file manifest and SHA-256 checksums.
-
-## 📝 Citation
-
-**Global Forest Crown Annotations contributors.** *Global Forest Crown Annotations: Canopy-Region Masks, Treetop Points, and Individual-Crown Polygons*. Version 1.0 (2026).
+The canopy-region, treetop and individual-crown components, together with the associated RGB imagery, scene-level metadata, are publicly available from Zenodo at https://doi.org/10.5281/zenodo.22070748. 
 
 ## ⚖️ Licensing and provenance
 
