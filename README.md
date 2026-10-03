@@ -17,6 +17,8 @@
 
 ## Overview
 
+**Full dataset:** [Download from Zenodo](https://doi.org/10.5281/zenodo.22070748).
+
 This geographically diverse forest annotation dataset contains satellite colour (RGB) images from 19 countries and three types of labels:
 
 - **Forest canopy masks:** delineate the area covered by tree crowns.
