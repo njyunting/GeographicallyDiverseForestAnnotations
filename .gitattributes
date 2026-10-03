@@ -1,0 +1,2 @@
+# Preserve sample-package bytes on every platform for SHA-256 checks.
+/examples/real_sample_package_v1/** -text

@@ -1,299 +1,265 @@
 <div align="center">
 
-<img src="assets/readme/repository-banner.webp" width="100%" alt="全球森林树冠标注数据集 1.0 版本横幅">
+<img src="assets/readme/repository-banner-geodiverse.webp" width="100%" alt="地理多样性森林标注数据集横幅">
 
 [English](README.md) | **中文**
 
-**一个全球性、经人工核验的森林基准数据集，联合树冠区域掩膜、树顶点和单木树冠多边形三类标注，服务于大范围森林制图与人工智能研究。**
+**基于 19 个国家卫星 RGB 影像的森林冠层掩膜、树顶点与单木树冠多边形标注数据集。**
 
-[![版本](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-数据集组成)
-[![标注](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#️-标注生产流程)
-[![范围](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#️-全球覆盖)
-[![示例包](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/README.zh-CN.md)
+[![覆盖范围](https://img.shields.io/badge/coverage-19%20countries-2E6EB5?style=for-the-badge)](#地理分布)
+[![标注](https://img.shields.io/badge/annotation-human%20reviewed-00A67E?style=for-the-badge)](#标注生产流程)
+[![示例](https://img.shields.io/badge/examples-12%20samples-7357A5?style=for-the-badge)](examples/real_sample_package_v1/)
+[![数据](https://img.shields.io/badge/data-Zenodo-1682D4?style=for-the-badge)](https://doi.org/10.5281/zenodo.22070748)
 
-[项目概述](#-项目概述) · [动态演示](#-标注动态演示) · [真实示例](#-真实示例数据包) · [数据组成](#-数据集组成) · [全球覆盖](#️-全球覆盖) · [标注流程](#️-标注生产流程) · [质量控制](#-质量控制) · [贡献者](#-贡献者与机构) · [数据获取](#-数据获取) · [引用](#-引用)
+[概览](#概览) · [标注演示](#标注演示) · [场景图集](#场景图集) · [数据组成](#数据集组成) · [覆盖范围](#地理分布) · [标注流程](#标注生产流程) · [技术验证](#技术验证) · [数据获取](#数据获取) · [示例数据](#真实示例数据包) · [贡献者](#贡献者与机构)
 
 </div>
 
-## 🌍 项目概述
+## 概览
 
-Global Forest Crown Annotations 汇集了三类从不同空间尺度描述森林结构的标注产品：
+**地理多样性森林标注数据集**收集了 19 个国家的卫星彩色（RGB）影像，提供三类标注：
 
-1. **树冠区域掩膜**：刻画树冠连续覆盖的空间范围。
-2. **树顶点**：在场景尺度上标识单株树木的树顶位置。
-3. **单木树冠多边形**：勾画每个可见树冠的实例边界。
+- **森林冠层掩膜：** 勾勒出树冠覆盖的区域。
+- **树顶点：** 用红点标记每棵树的树冠顶点。
+- **单木树冠多边形：** 勾勒出每棵树的树冠轮廓。
 
-这三类产品彼此互补，并不能相互替代。它们共同连接了景观尺度的树冠覆盖、单株树木位置和树冠实例几何，可用于不同地理环境下的数据集基准测试、模型研发和生态分析。
+### 用途与研究意义
 
-### 同一森林场景的三种视角
+- **统计冠层覆盖，分析森林结构。** 冠层掩膜可用于计算树冠覆盖面积和覆盖率，识别林中的空隙，分析树冠覆盖是连成一片还是分散成小块。用这些标注训练冠层分割模型后，可从影像中自动识别树冠覆盖区域，用于森林覆盖调查、城市树木覆盖统计和不同林分的比较。
+- **定位和计数树木，分析树木分布。** 树顶点可用于训练和测试模型，识别影像中的树木位置，统计数量、密度和分布。研究人员还可以用这些点标注训练模型，探索只标记位置就能识别树木的方法，减少逐株勾画完整树冠的工作量。
+- **区分相邻树冠，分析单株树冠的大小和形状。** 树冠多边形可用于训练单木树冠分割模型，提取每个树冠的轮廓、面积和形状，比较同一林分中树冠大小的差异。在树冠密集、相互接触或重叠的区域，可用人工轮廓检查模型是否漏掉树冠，或把多棵树的树冠识别成一个。
+
+不同地区的森林在树冠形状、密度、背景和影像条件上差异很大。这些标注可用于研究：在一个地区训练的模型，应用到其他地区后能否继续准确识别树木。还可比较不同方法在稀疏树木、密集林分和复杂背景下的表现，找出容易漏检、误检的情况，改进识别方法，减少大范围调查中的人工标注工作。
+
+| 标注类型 | 数据规模 | 场景或影像大小 | 文件格式 |
+|:--|:--|:--|:--|
+| **森林冠层掩膜** | **27 幅掩膜；108 km²** | 每个场景 2 km × 2 km | PNG/JPEG 格式的 RGB 掩膜影像 |
+| **树顶点** | **30 个 SVG 文件、1,648,847 个点；120 km²** | 每个场景 2 km × 2 km | SVG 矢量标记 |
+| **单木树冠多边形** | **5,061 幅 RGB 影像、299,906 条树冠标注** | 每幅影像 512 × 512 像素 | PNG/JPEG 影像与 COCO JSON 标注 |
+
+### 影像与标注示例
 
 <table>
   <tr>
     <td width="33.33%" align="center">
-      <img src="assets/readme/canopy-region-example.webp" width="100%" alt="树冠区域标注示例">
-      <br><b>01 · 树冠区域</b>
-      <br><sub>连续树冠覆盖范围</sub>
+      <img src="assets/readme/canopy-region-example.webp" width="100%" alt="森林场景 RGB 原始影像"><br><b>01 · RGB 影像</b><br><sub>原始场景</sub>
     </td>
     <td width="33.33%" align="center">
-      <img src="assets/readme/treetop-points-example.webp" width="100%" alt="树顶点标注示例">
-      <br><b>02 · 树顶点</b>
-      <br><sub>单株树木位置</sub>
+      <img src="assets/readme/treetop-points-example.webp" width="100%" alt="同一场景中的红色树顶点标记"><br><b>02 · 树顶点</b><br><sub>单株树冠顶点</sub>
     </td>
     <td width="33.33%" align="center">
-      <img src="assets/readme/crown-polygons-example.webp" width="100%" alt="单木树冠多边形标注示例">
-      <br><b>03 · 单木树冠多边形</b>
-      <br><sub>实例级树冠边界</sub>
+      <img src="assets/readme/crown-polygons-example.webp" width="100%" alt="同一场景中的彩色单木树冠轮廓"><br><b>03 · 树冠多边形</b><br><sub>单个树冠的边界</sub>
     </td>
   </tr>
 </table>
 
-### 数据概览
+从左到右依次为原始影像、用红点标记的树冠顶点，以及逐株勾画的树冠轮廓。
 
-| 数据组成 | 发布单元 | 已核验规模 | 标注路线 | 类别颜色 |
-|:--|:--|--:|:--|:--:|
-| **树冠区域掩膜** | 2 km × 2 km 栅格场景 | **27 幅镶嵌图** | **100% 人工标注** | 🟢 |
-| **树顶点** | 2 km × 2 km 点标注场景 | **26 个 SVG 场景中的 1,306,763 个有效标记** | **100% 人工标注** | 🔴 |
-| **单木树冠多边形** | 单个树冠实例 | **6,802 幅 RGB 图像中的 459,756 个树冠** | 约 70% 直接人工勾画；约 30% 模型候选，全部经过人工修改与确认 | 🟠 |
-
-## 🎥 标注动态演示
+## 标注演示
 
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="assets/readme/treetop-annotation-demo.mp4">
-        <img src="assets/readme/treetop-annotation-demo.webp" width="100%" alt="树顶点标注动态演示">
-      </a>
+      <a href="assets/readme/treetop-annotation-demo.mp4"><img src="assets/readme/treetop-annotation-demo.webp" width="100%" alt="树顶点标注演示"></a>
       <br><b>树顶点标注</b>
-      <br><sub>点击动画可打开 MP4 视频。</sub>
     </td>
     <td width="50%" align="center">
-      <a href="assets/readme/crown-annotation-demo.mp4">
-        <img src="assets/readme/crown-annotation-demo.webp" width="100%" alt="单木树冠标注动态演示">
-      </a>
+      <a href="assets/readme/crown-annotation-demo.mp4"><img src="assets/readme/crown-annotation-demo.webp" width="100%" alt="单木树冠标注演示"></a>
       <br><b>单木树冠标注</b>
-      <br><sub>点击动画可打开 MP4 视频。</sub>
     </td>
   </tr>
 </table>
 
-两个预览动画都会在 GitHub 中自动播放并循环。链接的 MP4 文件保留了更流畅的运动和更高的视觉质量。
+树顶点在每幅 **2 km × 2 km** 的场景中逐株标记。演示展示了放大局部影像后，标记树冠顶点和勾画单株树冠轮廓的细节。
 
-## 🚀 真实示例数据包
+## 数据集组成
 
-仓库提供一个已经完成完整性核验的轻量示例包，包含 **12组真实样例**，可立即用于检查数据格式和开发读取程序：
+### 1. 森林冠层掩膜
 
-| 树冠区域掩膜 | 树顶点 | 单木树冠实例 |
-|:--:|:--:|:--:|
-| 4个场景 | 4个场景 | 4幅影像 |
-| PNG/TIFF二值掩膜 | CSV/JSON点坐标 | RGB、轮廓图、实例TIFF和面积表 |
+森林冠层掩膜勾画树冠的覆盖范围，包括单棵树的树冠和连成片的冠层。树冠之间的空隙、道路、建筑、水体和裸地标为背景。
 
-<div align="center">
-
-### [查看真实示例数据包 →](examples/real_sample_package_v1/README.zh-CN.md)
-
-<sub>包含中英文说明、文件清单和SHA-256校验和。</sub>
-
-</div>
-
-## 🧩 数据集组成
-
-### 1. 树冠区域掩膜
-
-树冠区域掩膜以栅格标签表示可见树冠的空间覆盖范围，适用于树冠覆盖制图、语义分割和景观尺度森林监测等任务。
-
-| 字段 | 说明 |
-|:--|:--|
-| **表示形式** | 与源影像对齐的栅格掩膜 |
-| **标注单元** | 连续树冠区域 |
-| **单景空间覆盖范围** | **2 km × 2 km（4 km²）** |
-| **生产方式** | 完全人工勾画 |
-| **当前核验规模** | 27 幅镶嵌图 |
-| **典型任务** | 语义分割 / 树冠覆盖范围估计 |
+**27 幅掩膜均由人工通过 Adobe Photoshop 2022 勾画**，每幅覆盖 **2 km × 2 km**。完整数据以 RGB PNG/JPEG 格式保存，示例包另提供二值 PNG/TIFF 掩膜。
 
 ### 2. 树顶点
 
-树顶点记录人工判读的单株树木顶部位置。由于点标注本身的空间覆盖范围很小，验证时采用合理的空间容差，而不是不切实际的像素级完全一致标准。
+树冠顶点主要根据树冠形状和枝叶纹理判断。俯视针叶树时，枝叶纹理通常从四周向中心汇聚，汇聚的位置就是树冠顶点；斜视时，依据可见的树冠顶部判断。标注人员在 Inkscape 中用红点标记这些位置。阔叶树等没有明显顶点的树冠，则根据轮廓和纹理判断树冠中心，并在中心标记。
 
-| 字段 | 说明 |
-|:--|:--|
-| **表示形式** | 存储于场景级矢量图层中的点标注 |
-| **标注单元** | 一个判读树顶位置 |
-| **单景空间覆盖范围** | **2 km × 2 km（4 km²）** |
-| **生产方式** | 完全人工放置 |
-| **当前核验规模** | 26 个 SVG 场景中的 1,306,763 个有效标记 |
-| **典型任务** | 点目标检测 / 树木计数 / 密度估计 |
+树顶点标注包含 **30 个 SVG 文件、1,648,847 个点**，每个文件对应 **2 km × 2 km** 的场景。
+
+<details>
+<summary>读取 SVG 标记时需要注意的细节</summary>
+
+点的位置保存在 SVG 画布坐标中。叠加到影像时，需要根据画布范围和影像尺寸换算坐标，并检查是否对齐。红点可能以圆、椭圆或路径保存，颜色可能直接写在元素中，也可能由 CSS 样式设置。读取时应同时识别这些标记和颜色设置，避免漏读。
+
+</details>
 
 ### 3. 单木树冠多边形
 
-单木树冠多边形在实例尺度上描述可见树冠边界。约 70% 的树冠由标注人员直接勾画，约 30% 以模型生成的候选轮廓为起点。所有保留的候选结果在纳入数据集前均经过人工修改和确认。
+每个多边形勾画一棵树的树冠轮廓。相邻树冠接触或部分重叠时，根据树冠形状、枝叶纹理和边缘变化判断各自的范围，再分别勾画。
 
-| 字段 | 说明 |
-|:--|:--|
-| **表示形式** | 实例掩膜、轮廓及树冠面积记录 |
-| **标注单元** | 一个可见树冠 |
-| **生产方式** | 约 70% 直接人工勾画 + 约 30% 模型候选辅助，之后全部进行人工修改 |
-| **当前核验规模** | 6,802 幅 RGB 图像中的 459,756 个树冠 |
-| **典型任务** | 实例分割 / 树冠勾画 / 树冠尺寸分析 |
+数据集包含 **5,061 幅 RGB 影像和 299,906 条树冠标注**，每幅影像为 512 × 512 像素。其中 3 幅没有树冠标注，作为训练集中的背景样本。树冠标注采用 COCO JSON 格式，只有一个类别 `tree_crown`（树冠）。
 
-## 🗺️ 全球覆盖
+<details>
+<summary>COCO 文件与坐标细节</summary>
 
-<div align="center">
+影像包括 4,875 幅 PNG 和 186 幅 JPEG，5,058 幅含有树冠标注。每条标注记录影像与标注 ID、多边形坐标、`[x, y, width, height]` 形式的边界框、平方像素面积、`category_id = 1` 和 `iscrowd = 0`。坐标原点位于影像左上角，x 向右增加，y 向下增加。299,895 条记录包含一个多边形，11 条包含两个多边形。
 
-<img src="assets/readme/global-distribution.svg" width="94%" alt="全球样点分布图及森林标注示例">
+</details>
 
-*已制图的卫星场景位置及代表性标注示例。地图采用 Robinson 投影，并以国家边界提供地理参照。*
+树冠影像按 **原始场景** 划分训练集、验证集和测试集。同一幅原始影像裁出的小图都放在同一组，避免相邻区域同时出现在训练集和测试集中。
 
-</div>
+| 分区 | 影像数 | 树冠标注数 |
+|:--|--:|--:|
+| 训练集 | 4,144 | 255,983 |
+| 验证集 | 247 | 8,244 |
+| 测试集 | 670 | 35,679 |
+| **合计** | **5,061** | **299,906** |
 
-本数据集旨在覆盖多样的森林外观、树冠结构和地理环境。地图展示现有卫星场景的位置；地图周边示例用于说明标注产品，并不代表不同国家或生物群系具有相同的采样密度。
-
-## 🖼️ 代表性场景图集
+## 地理分布
 
 <div align="center">
 
-<img src="assets/readme/representative-scene-atlas-v3.webp" width="100%" alt="包含树冠区域、树顶点和单木树冠多边形的代表性场景图集">
+<img src="assets/readme/geographic-distribution-sd10-2.webp" width="100%" alt="场景地理分布与标注示例">
 
 </div>
 
-场景图集展示树冠纹理、树冠密度、背景环境、影像分辨率和标注几何的多样性。该图用于直观说明数据集中的典型情况，而不是对完整数据集进行统计汇总。
+数据来自 **19 个国家**：安哥拉、澳大利亚、奥地利、巴西、加拿大、中国、丹麦、芬兰、德国、印度、意大利、日本、黎巴嫩、俄罗斯、西班牙、瑞典、瑞士、乌克兰和美国。影像涵盖针叶林、阔叶林、混交林和人工林，包括树木稀疏、冠层分散和冠层密集连片的场景，以及农田、城市和城郊的树木。
 
-## ✍️ 标注生产流程
+图中的三角形、星形和圆形分别表示冠层掩膜、树顶点和单木树冠的场景位置。周围示例图的编号与地图中的编号对应。
 
-数据标注采用以人工为核心的生产与核验流程。树冠区域掩膜和树顶点均由标注人员直接依据原始影像进行纯人工标注。单木树冠多边形约 70% 由人工直接勾画，约 30% 以模型候选结果作为起点；所有保留的树冠均须经过人工修改与确认。三类数据在发布前还需完成独立复核和自动文件级完整性检查。
+### 影像来源与像素大小
 
-| 阶段 | 树冠区域掩膜 | 树顶点 | 单木树冠多边形 |
+RGB 卫星影像主要通过 Google Earth Pro 获取，来源包括 WorldView、QuickBird 和 SPOT。选图时优先使用标注前五年内拍摄、无云且树冠清晰的影像；近期影像不符合要求时，再选择较早的清晰影像。
+
+**导出影像的像素大小为 0.0651–0.1237 m**，按场景的地面范围和影像像素数计算。这表示导出影像中每个像素对应的地面长度；卫星原始影像的分辨率取决于影像来源。拍摄日期、影像来源、场景位置、影像尺寸和导出像素大小记录在 `scene_metadata.csv` 中。
+
+## 场景图集
+
+<div align="center">
+
+<img src="assets/readme/representative-scene-atlas-v3.webp" width="100%" alt="多种森林场景中的冠层掩膜、树顶点和树冠轮廓小块示例图集">
+
+</div>
+
+左侧两列为冠层掩膜，中间两列为树顶点，右侧两列为单木树冠轮廓。绿色区域表示树冠覆盖，红点标记树冠顶点，不同颜色的轮廓区分各个树冠。图集展示了稀疏树木、密集林分、冠层空隙，以及道路和建筑附近的标注。
+
+## 标注生产流程
+
+9 名经过培训的标注人员完成了标注。冠层掩膜由人工在 Photoshop 中勾画，树冠顶点由人工在 Inkscape 中用红点标记。单木树冠数据中，约 **70% 的影像**由人工直接勾画；约 **30% 的影像**先用经过微调的 Cellpose-SAM 模型生成初步轮廓，再由人工检查和修改。
+
+标注人员检查并修正每个模型候选树冠：把误连在一起的树冠拆开，将同一树冠的碎片合并，补上漏掉的树冠，删除误检，并调整轮廓。全部树冠标注经过人工检查后，再由 3 名复核人员分批复核，最后由另一名主审人员检查完整数据集。
+
+程序检查文件能否正常读取、影像与标签是否对应、编号是否重复、坐标是否超出影像，以及树冠轮廓是否有效。发现问题后，修改并重新检查。
+
+## 技术验证
+
+一名独立标注者在不查看原标签的情况下，重新标注了 **214 个影像样本**：59 个冠层影像块、26 个树顶点影像块和 129 幅树冠影像。两套标注的比较结果如下。
+
+| 标注类型 | 验证样本 | 匹配或比较方法 | 一致性结果 |
 |:--|:--|:--|:--|
-| **初始标注** | 人工 | 人工 | 直接人工标注或模型候选 |
-| **人工修改** | 必须 | 必须 | 每个保留树冠均必须修改确认 |
-| **人工确认** | 必须 | 必须 | 必须 |
-| **自动完整性检查** | 影像–掩膜配对、掩膜有效性、标识符 | 影像–点配对、坐标边界、标识符 | 影像–标注配对、多边形有效性、标识符 |
-| **发布门槛** | 通过复核与完整性检查 | 通过带空间容差的复核及完整性检查 | 通过边界复核及完整性检查 |
+| 森林冠层掩膜 | 来自 21 个场景的 59 个影像块 | 二值掩膜逐像素重叠比较 | 平均 IoU **0.914**；平均 Dice **0.948** |
+| 树顶点 | 来自 17 个场景的 26 个影像块 | 允许位置偏差 **15 像素**的一对一匹配 | 影像块平均 F1 **0.851**；计数 MAE **25.0 点/块** |
+| 单木树冠 | 129 幅影像块 | **IoU ≥ 0.50** 的一对一匹配 | 影像平均检测 F1 **0.864**；匹配树冠 IoU 中位数 **0.807** |
 
-> [!NOTE]
-> 模型辅助**仅应用于约 30% 的单木树冠多边形生产流程**。树冠区域掩膜和树顶点均为完全人工标注。
+IoU 和 Dice 衡量两套掩膜有多少区域重叠。树顶点 F1 衡量两位标注者是否标出了相同的树，匹配时允许点的位置相差最多 15 个像素；计数 MAE 表示每个影像块的点数平均相差多少。树冠 IoU 衡量匹配树冠的轮廓重叠程度，检测 F1 则同时考虑匹配成功、漏标和多标的树冠。
 
-## ✅ 质量控制
+### 模型测试结果
 
-<div align="center">
+| 任务 | 模型 | 各模型的结果范围 |
+|:--|:--|:--|
+| 冠层分割 | U-Net、DeepLabv3+、SegFormer | 验证集 IoU **79.49–81.74%**；Dice **88.52–89.93%** |
+| 树顶点定位 | U-Net、SegFormer、Mamba-UNet | 验证集点 F1 **72.65–76.33%**；计数 MAE **24.65–28.47 点/块** |
+| 树冠实例分割 | Mask R-CNN、YOLOv8m-seg、Mask2Former、QueryInst、MaskDINO、StarDist-TCD | 掩膜 AP50:95 **26.51–52.44%**；AP50 **42.73–83.84%** |
 
-<img src="assets/readme/technical-validation-core.webp" width="100%" alt="三项技术验证分析">
+每个模型训练一次后进行评估。在比较的树冠模型中，MaskDINO 的 AP50:95 和 AP50 最高。
 
-</div>
+## 数据获取
 
-质量控制结合独立人工复核和自动文件级检查。未通过检查的样本会退回相应标注阶段，依次完成修改、重新复核和再次检查。
+完整数据可通过 [Zenodo DOI 10.5281/zenodo.22070748](https://doi.org/10.5281/zenodo.22070748) 获取，包括冠层掩膜、树顶点 SVG 文件、树冠影像及 COCO 标注、场景信息和数据说明。树冠标注附带裁剪后的 RGB 影像，完整的原始场景影像不随数据集提供。
 
-- **完整性与重复项：**识别缺失、空白或重复标签。
-- **影像–标注配对：**确认每个标注对应正确的源影像。
-- **坐标有效性：**检查树顶点和几何对象是否位于影像边界内。
-- **几何有效性：**检查掩膜可读性和多边形结构。
-- **边界复核：**检查树冠合并、树冠拆分和存在歧义的边界。
-- **文件完整性：**验证标识符、元数据、文件可读性和发布校验和。
-- **版本管理：**仅冻结通过人工核验和完整性检查的数据包。
+### 完整数据集目录
 
-## 📁 数据组织
+完整数据集的目录如下：
 
 ```text
 dataset/
-├── canopy_region_masks/
-│   ├── imagery/
-│   ├── masks/
-│   └── metadata/
-├── treetop_points/
-│   ├── imagery/
-│   ├── annotations/
-│   └── metadata/
-├── individual_crown_polygons/
-│   ├── imagery/
-│   └── instance_masks/
-└── manifests/
-    ├── file_inventory.csv
-    ├── checksums.sha256
-    └── provenance.csv
+├── canopy_region/                 # 27 幅 PNG/JPEG 冠层掩膜
+├── treetop/                       # 30 个 SVG 点标注文件
+├── individual_crown/
+│   └── images/                    # 5,061 幅 512 × 512 RGB 影像
+├── annotations/
+│   ├── instances_all.json
+│   ├── instances_train.json
+│   ├── instances_val.json
+│   └── instances_test.json
+└── scene_metadata.csv
 ```
 
-## 🔬 预期用途
+## 真实示例数据包
 
-- 树冠覆盖范围与森林覆盖语义分割。
-- 树顶点检测、点定位及树木数量估计。
-- 单木树冠检测与实例分割。
-- 跨区域迁移、域偏移及模型鲁棒性研究。
-- 区域、点和实例标注之间的多粒度学习。
-- 标注质量控制与地理空间视觉工作流的基准测试。
+[`examples/real_sample_package_v1`](examples/real_sample_package_v1/README.zh-CN.md) 提供 **12 个示例**，包含标注预览和下表所列的标签文件，可用于了解标注内容和读取格式。
 
-### 使用时需要考虑的局限
+| 数据组成 | 示例数 | 演示文件 |
+|:--|--:|:--|
+| 森林冠层掩膜 | 4 | 叠加预览、二值 PNG/TIFF 掩膜和覆盖率统计 |
+| 树顶点 | 4 | 叠加预览及 CSV/JSON 坐标 |
+| 单木树冠 | 4 | RGB 影像、轮廓预览、TIFF 实例掩膜和面积 CSV |
 
-- 三类标注具有不同的空间单元，不应被视为可互换标签。
-- 数据集覆盖全球，但空间采样并不均匀。
-- 在树冠重叠、阴影及异质冠层结构下，可见树冠边界仍可能存在歧义。
-- 点标注的一致性应在明确的空间容差下评估。
-- 在重新分发之前，应分别核查源影像权利和标注产品许可。
+## 使用说明与局限
 
-## 📦 数据获取
+训练树冠分割模型时，可直接使用已划分的训练集、验证集和测试集。读取数据时，按影像编号找到对应标签，并检查标签与影像是否对齐。
 
-[`examples/real_sample_package_v1`](examples/real_sample_package_v1/README.zh-CN.md) 提供包含12组真实样例的代表性数据包，覆盖三类标注，并附有分类说明、文件清单和 SHA-256 校验和。
-完整数据集请于 https://doi.org/10.5281/zenodo.22070748获取
+阴影、树冠重叠和影像边缘会增加标注难度，可能造成漏标或轮廓不完整。密集林分中，多个树冠可能被看成一个；有多个明显顶峰的大树冠，也可能被分成几个。下层树木被上层冠层挡住时，影像中通常无法辨认。
 
+比较模型结果时，树顶点定位需要注明允许的位置偏差。评估树冠分割时，既要检查树冠是否找全、找对，也要比较预测轮廓与人工轮廓的重叠程度。
 
-## ⚖️ 许可与来源
+## 许可与来源
 
-本仓库针对不同类型的材料采用不同条款，不存在覆盖所有文件的仓库级统一许可。
+标注数据、软件和影像分别适用以下条款：
 
-- **标注数据与元数据：** 采用 [CC BY 4.0](LICENSE-DATA.md)。
-- **软件与脚本：** 采用 [MIT License](LICENSE-CODE)。
-- **第三方原始影像：** 遵循[第三方影像说明](THIRD_PARTY_NOTICES.md)所列的来源专属条款。
+- **标注数据与场景信息：** [CC BY 4.0](LICENSE-DATA.md)。
+- **软件与脚本：** [MIT License](LICENSE-CODE)。
+- **第三方影像及其预览图：** 使用时须遵守 Google Earth 和影像提供方的使用与署名要求，详见[第三方影像说明](THIRD_PARTY_NOTICES.md)。
 
-## 🤝 贡献者与机构
+## 贡献者与机构
 
 <div align="center">
 
-<h3>项目贡献者</h3>
-
 <table>
   <tr>
-    <td align="center" width="20%">
-      <a href="https://github.com/njyunting">
-        <img src="https://avatars.githubusercontent.com/u/78784756?v=4" width="92" alt="Ting Yun — @njyunting"><br>
-        <sub><b>Ting Yun</b></sub><br>
-        <sub>第一作者 · @njyunting</sub>
-      </a>
+    <td align="center" width="33.33%">
+      <a href="https://github.com/njyunting"><img src="https://avatars.githubusercontent.com/u/78784756?v=4" width="92" alt="Yun Ting — @njyunting"><br><sub><b>Yun Ting</b></sub></a><br>
+      <sub>通讯作者 · 南京林业大学</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/zhang-huaiqing.svg" width="92" alt="张怀清"><br>
-      <sub><b>张怀清</b></sub><br>
-      <sub>中国林业科学研究院</sub>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/zhang-huaiqing.svg" width="92" alt="Huaiqing Zhang"><br><sub><b>Huaiqing Zhang · 张怀清</b></sub><br>
+      <sub>通讯作者 · 中国林业科学研究院</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="杨文杰"><br>
-      <sub><b>杨文杰</b></sub><br>
-      <sub>项目贡献者</sub>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang · 杨文杰</b></sub><br>
+      <sub>共同第一作者 · 南京林业大学</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/bai-chenhui.svg" width="92" alt="白晨辉"><br>
-      <sub><b>白晨辉</b></sub><br>
-      <sub>项目贡献者</sub>
+  </tr>
+  <tr>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu · 许恩浩</b></sub><br>
+      <sub>共同第一作者 · 南京林业大学</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="许恩浩"><br>
-      <sub><b>许恩浩</b></sub><br>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
+      <sub>项目贡献者 · 华东师范大学</sub>
+    </td>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/li-zhang.svg" width="92" alt="Li Zhang"><br><sub><b>Li Zhang</b></sub><br>
+      <sub>论文作者 · 南京林业大学</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="3">
+      <img src="assets/readme/contributors/bai-chenhui.svg" width="92" alt="Chenhui Bai"><br><sub><b>Chenhui Bai · 白晨辉</b></sub><br>
       <sub>项目贡献者</sub>
     </td>
   </tr>
 </table>
-
-<br><br>
-
-| 南京林业大学 | 中国林业科学研究院 |
-|:--:|:--:|
-| **Nanjing Forestry University** | **Chinese Academy of Forestry** |
-
-</div>
-
-贡献者头像墙展示数据整理、人工标注、质量验证、软件开发、可视化和学术传播等方面的贡献。所属机构和贡献角色列于 [`CONTRIBUTORS.md`](CONTRIBUTORS.md)。
-
----
-
-<div align="center">
-
-**三种标注尺度，一个全球分布的森林基准数据集。**
 
 </div>

@@ -1,298 +1,265 @@
 <div align="center">
 
-<img src="assets/readme/repository-banner.webp" width="100%" alt="Version 1.0 banner for Global Forest Crown Annotations">
+<img src="assets/readme/repository-banner-geodiverse.webp" width="100%" alt="Geographically Diverse Forest Annotation Dataset repository banner">
 
 **English** | [中文](README.zh-CN.md)
 
-**A global, human-verified benchmark connecting canopy-region masks, treetop points, and individual-crown polygons across satellite —built for scalable forest mapping and AI research.**
+**Forest canopy masks, treetop points and individual tree crown polygons derived from satellite RGB imagery across 19 countries.**
 
-[![Version](https://img.shields.io/badge/version-1.0-00A67E?style=for-the-badge)](#-dataset-components)
-[![Annotation](https://img.shields.io/badge/annotation-human%20verified-00A67E?style=for-the-badge)](#-annotation-production)
-[![Coverage](https://img.shields.io/badge/coverage-global-2E6EB5?style=for-the-badge)](#-global-coverage)
-[![Samples](https://img.shields.io/badge/real%20sample%20package-12%20scenes-7357A5?style=for-the-badge)](examples/real_sample_package_v1/)
+[![Coverage](https://img.shields.io/badge/coverage-19%20countries-2E6EB5?style=for-the-badge)](#geographic-coverage)
+[![Annotation](https://img.shields.io/badge/annotation-human%20reviewed-00A67E?style=for-the-badge)](#annotation-production)
+[![Samples](https://img.shields.io/badge/examples-12%20samples-7357A5?style=for-the-badge)](examples/real_sample_package_v1/)
+[![Data](https://img.shields.io/badge/data-Zenodo-1682D4?style=for-the-badge)](https://doi.org/10.5281/zenodo.22070748)
 
-[Overview](#-overview) · [Demos](#-annotation-demos) · [Real samples](#-real-sample-package) · [Dataset](#-dataset-components) · [Coverage](#-global-coverage) · [Annotations](#-annotation-production) · [Quality control](#-quality-control) · [Contributors](#-contributors-and-institutions) · [Access](#-data-access) · [Citation](#-citation)
+[Overview](#overview) · [Demos](#annotation-demos) · [Gallery](#scene-gallery) · [Dataset](#dataset-components) · [Coverage](#geographic-coverage) · [Annotation](#annotation-production) · [Validation](#technical-validation) · [Access](#data-access) · [Examples](#real-sample-package) · [Contributors](#contributors-and-institutions)
 
 </div>
 
-## 🌍 Overview
+## Overview
 
-Global Forest Crown Annotations brings together three annotation products that describe forest structure at different spatial levels:
+This geographically diverse forest annotation dataset contains satellite colour (RGB) images from 19 countries and three types of labels:
 
-1. **Canopy-region masks** capture continuous areas occupied by tree canopy.
-2. **Treetop points** identify individual treetop locations at scene scale.
-3. **Individual-crown polygons** delineate the visible boundary of each tree crown.
+- **Forest canopy masks:** delineate the area covered by tree crowns.
+- **Treetop points:** mark each tree's crown apex with a red dot.
+- **Individual tree crown polygons:** trace the outline of each tree crown.
 
-These products are complementary rather than interchangeable. Together, they provide a bridge from landscape-scale canopy extent to tree locations and crown-level geometry, supporting dataset benchmarking, model development and ecological analysis across varied geographic contexts.
+### Applications and research value
 
-### Three views of one forest scene
+- **Measure canopy cover and study forest structure.** Canopy masks can be used to calculate canopy area and cover percentage, identify gaps, and study whether canopy forms continuous cover or separate patches. Models trained on these labels can identify canopy cover in images for forest cover surveys, urban tree cover mapping and comparisons among forest stands.
+- **Locate and count trees, and study their distribution.** Treetop points can be used to train and test models that locate trees in images and estimate their number, density and distribution. Researchers can also study how to train tree detection models using position markers alone, reducing the need to trace every crown.
+- **Separate neighbouring crowns and measure individual crown size and shape.** Crown polygons can be used to train individual crown segmentation models, extract crown outlines, areas and shapes, and compare crown sizes within a stand. In dense areas with touching or overlapping crowns, the manual outlines help check whether a model misses crowns or merges several crowns into one.
+
+Forests differ across regions in crown shape, density, background and imaging conditions. These labels can be used to study whether a model trained in one region still identifies trees accurately in another. They also allow comparisons across sparse trees, dense stands and complex backgrounds, helping researchers identify missed and false detections, improve recognition methods and reduce manual labelling in large-area surveys.
+
+| Annotation type | Dataset size | Scene or image size | File format |
+|:--|:--|:--|:--|
+| **Forest canopy masks** | **27 masks; 108 km²** | 2 km × 2 km per scene | RGB mask images in PNG/JPEG |
+| **Treetop points** | **1,648,847 points in 30 SVG files; 120 km²** | 2 km × 2 km per scene | SVG vector markers |
+| **Individual tree crown polygons** | **299,906 annotations in 5,061 RGB images** | 512 × 512 pixels per image | PNG/JPEG images and COCO JSON annotations |
+
+### Image and annotation examples
 
 <table>
   <tr>
     <td width="33.33%" align="center">
-      <img src="assets/readme/canopy-region-example.webp" width="100%" alt="Canopy-region example">
-      <br><b>01 · Canopy region</b>
-      <br><sub>Continuous canopy extent</sub>
+      <img src="assets/readme/canopy-region-example.webp" width="100%" alt="Source RGB forest scene"><br><b>01 · RGB image</b><br><sub>Source scene</sub>
     </td>
     <td width="33.33%" align="center">
-      <img src="assets/readme/treetop-points-example.webp" width="100%" alt="Treetop-point example">
-      <br><b>02 · Treetop points</b>
-      <br><sub>Individual tree locations</sub>
+      <img src="assets/readme/treetop-points-example.webp" width="100%" alt="Red treetop markers in the same scene"><br><b>02 · Treetop points</b><br><sub>Individual crown apices</sub>
     </td>
     <td width="33.33%" align="center">
-      <img src="assets/readme/crown-polygons-example.webp" width="100%" alt="Individual-crown polygon example">
-      <br><b>03 · Crown polygons</b>
-      <br><sub>Instance-level boundaries</sub>
+      <img src="assets/readme/crown-polygons-example.webp" width="100%" alt="Coloured crown outlines in the same scene"><br><b>03 · Crown polygons</b><br><sub>Individual crown boundaries</sub>
     </td>
   </tr>
 </table>
 
-### At a glance
+From left to right: the source image, crown apices marked with red dots, and the outlines of individual tree crowns.
 
-| Component | Released unit | Verified scale | Annotation route | Primary colour |
-|:--|:--|--:|:--|:--:|
-| **Canopy-region masks** | 2 km × 2 km raster scene | **27 mosaics** | **100% manual** | 🟢 |
-| **Treetop points** | 2 km × 2 km point scene | **1,306,763 effective markers in 26 SVG scenes** | **100% manual** | 🔴 |
-| **Individual-crown polygons** | Crown instance | **459,756 crowns in 6,802 RGB images** | ≈70% direct manual; ≈30% model candidates, all corrected and confirmed by humans | 🟠 |
-
-## 🎥 Annotation demos
+## Annotation demos
 
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="assets/readme/treetop-annotation-demo.mp4">
-        <img src="assets/readme/treetop-annotation-demo.webp" width="100%" alt="Animated treetop-point annotation demonstration">
-      </a>
+      <a href="assets/readme/treetop-annotation-demo.mp4"><img src="assets/readme/treetop-annotation-demo.webp" width="100%" alt="Treetop-point annotation demonstration"></a>
       <br><b>Treetop-point annotation</b>
-      <br><sub>Click the animation to open the MP4 video.</sub>
     </td>
     <td width="50%" align="center">
-      <a href="assets/readme/crown-annotation-demo.mp4">
-        <img src="assets/readme/crown-annotation-demo.webp" width="100%" alt="Animated individual-crown annotation demonstration">
-      </a>
+      <a href="assets/readme/crown-annotation-demo.mp4"><img src="assets/readme/crown-annotation-demo.webp" width="100%" alt="Individual-crown annotation demonstration"></a>
       <br><b>Individual-crown annotation</b>
-      <br><sub>Click the animation to open the MP4 video.</sub>
     </td>
   </tr>
 </table>
 
-Both previews autoplay and loop on GitHub. The linked MP4 files preserve smoother motion and higher visual quality.
+Treetops are marked tree by tree across each **2 km × 2 km** scene. The demonstrations show details of marking crown apices and tracing individual crowns in enlarged sections of the images.
 
-## 🚀 Real sample package
+## Dataset components
 
-The repository includes a compact, integrity-checked package of **12 real examples** for immediate format inspection and loader development:
+### 1. Forest canopy masks
 
-| Canopy-region masks | Treetop points | Individual-crown polygons |
-|:--:|:--:|:--:|
-| 4 scenes | 4 scenes | 4 images |
-| Binary PNG/TIFF masks | CSV/JSON coordinates | RGB, contours, instance TIFF and area CSV |
+Forest canopy masks delineate the area covered by tree crowns, including isolated crowns and continuous canopy. Gaps between crowns, roads, buildings, water and bare ground are labelled as background.
 
-<div align="center">
-
-### [Explore the real sample package →](examples/real_sample_package_v1/)
-
-<sub>Includes bilingual documentation, a file manifest and SHA-256 checksums.</sub>
-
-</div>
-
-## 🧩 Dataset components
-
-### 1. Canopy-region masks
-
-Canopy-region masks represent the spatial extent of visible tree canopy as raster labels. They are designed for tasks such as canopy-cover mapping, semantic segmentation and landscape-scale forest monitoring.
-
-| Field | Description |
-|:--|:--|
-| **Representation** | Raster mask aligned with source imagery |
-| **Annotation unit** | Continuous canopy region |
-| **Spatial coverage per scene** | **2 km × 2 km (4 km²)** |
-| **Production** | Fully manual delineation |
-| **Current verified scale** | 27 mosaics |
-| **Typical task** | Semantic segmentation / canopy-extent estimation |
+**All 27 masks were delineated manually in Adobe Photoshop 2022**, with each covering **2 km × 2 km**. The full dataset stores masks as RGB PNG/JPEG images; the example package also provides binary PNG/TIFF masks.
 
 ### 2. Treetop points
 
-Treetop points record the interpreted location of individual tree tops. Because a point occupies a very small spatial footprint, validation uses a practical spatial tolerance rather than an unrealistically strict pixel-perfect equality rule.
+Crown apices are identified from crown shape and foliage texture. In views of conifers from above, branch and foliage patterns converge towards the crown centre, indicating the apex. In angled views, the visible top of the crown is used. Annotators mark these locations with red dots in Inkscape. For broad-leaved trees and other crowns without a clear apex, they estimate and mark the crown centre from its outline and texture.
 
-| Field | Description |
-|:--|:--|
-| **Representation** | Point annotations stored in scene-level vector layers |
-| **Annotation unit** | One interpreted treetop location |
-| **Spatial coverage per scene** | **2 km × 2 km (4 km²)** |
-| **Production** | Fully manual placement |
-| **Current verified scale** | 1,306,763 effective markers across 26 SVG scenes |
-| **Typical task** | Point detection / tree counting / density estimation |
+The release contains **1,648,847 points in 30 SVG files**, each corresponding to a **2 km × 2 km** scene.
 
-### 3. Individual-crown polygons
+<details>
+<summary>Details for reading SVG markers</summary>
 
-Individual-crown polygons describe visible crown boundaries at instance level. Approximately 70% were delineated directly by annotators; approximately 30% began as model-generated candidates. Every retained candidate was manually corrected and human confirmed before inclusion.
+Point locations are stored in SVG canvas coordinates. Convert them using the canvas extent and image dimensions, then check their alignment with the image. Red dots may be stored as circles, ellipses or paths, with colour set directly on an element or through CSS. Read all of these marker types and colour settings to avoid missing points.
 
-| Field | Description |
-|:--|:--|
-| **Representation** | Instance masks, contours and crown-area records |
-| **Annotation unit** | One visible tree crown |
-| **Production** | ≈70% direct manual + ≈30% model-candidate-assisted, followed by manual correction |
-| **Current verified scale** | 459,756 crowns across 6,802 RGB images |
-| **Typical task** | Instance segmentation / crown delineation / crown-size analysis |
+</details>
 
-## 🗺️ Global coverage
+### 3. Individual tree crown polygons
 
-<div align="center">
+Each polygon traces an individual tree crown. Where neighbouring crowns touch or partly overlap, annotators use crown shape, foliage texture and local edges to identify and trace their separate outlines.
 
-<img src="assets/readme/global-distribution.svg" width="94%" alt="Global distribution map with representative forest annotation examples">
+The dataset contains **5,061 RGB images and 299,906 crown annotations**. Each image is 512 × 512 pixels. Three images contain no labelled crowns and are included as training examples of background. Crown annotations are provided in COCO JSON, with one category, `tree_crown`.
 
-*Mapped satellite-scene locations and representative released annotations. Country boundaries provide geographic reference in a Robinson projection.*
+<details>
+<summary>COCO files and coordinate conventions</summary>
 
-</div>
+There are 4,875 PNG and 186 JPEG images; 5,058 images contain crown labels. Each annotation records image and annotation IDs, polygon coordinates, a bounding box `[x, y, width, height]`, area in square pixels, `category_id = 1` and `iscrowd = 0`. Coordinates start at the upper-left corner, with x increasing rightwards and y downwards. There are 299,895 records with one polygon and 11 with two polygons.
 
-The collection was assembled to capture diverse forest appearances, crown structures and geographic settings. The map reports the available mapped scenes; representative examples around the map illustrate the annotation products and are not intended to imply equal sampling density among countries or biomes.
+</details>
 
-## 🖼️ Representative scene atlas
+The crown images are split **by source scene** into training, validation and test sets. All crops from one original image stay in the same set, keeping nearby areas out of separate training and test sets.
+
+| Split | Images | Crown annotations |
+|:--|--:|--:|
+| Training | 4,144 | 255,983 |
+| Validation | 247 | 8,244 |
+| Test | 670 | 35,679 |
+| **Total** | **5,061** | **299,906** |
+
+## Geographic coverage
 
 <div align="center">
 
-<img src="assets/readme/representative-scene-atlas-v3.webp" width="100%" alt="Representative scene atlas showing canopy masks, treetop points and individual-crown polygons">
+<img src="assets/readme/geographic-distribution-sd10-2.webp" width="100%" alt="Geographic distribution with annotation examples">
 
 </div>
 
-The scene atlas highlights variability in canopy texture, crown density, background context, image resolution and annotation geometry. It is intended as a visual guide to the range of cases represented in the collection rather than a statistical summary of the complete dataset.
+The dataset covers **19 countries**: Angola, Australia, Austria, Brazil, Canada, China, Denmark, Finland, Germany, India, Italy, Japan, Lebanon, Russia, Spain, Sweden, Switzerland, Ukraine and the United States. It includes coniferous, broad-leaved, mixed and planted forests, with sparse trees, scattered canopy patches and dense continuous canopy, as well as trees in farmland, cities and surrounding areas.
 
-## ✍️ Annotation production
+Triangles, stars and circles mark scene locations for canopy masks, treetop points and individual crowns, respectively. Labels on the surrounding examples match their locations on the map.
 
-Annotation follows a human-centred production and verification process. Canopy-region masks and treetop points are drawn manually from the source imagery. Individual-crown polygons are produced either by direct manual delineation (approximately 70%) or from model-generated candidates (approximately 30%); every retained crown is then manually corrected and confirmed. All three components undergo independent review and automated file-level integrity checks before release.
+### Image sources and pixel size
 
-| Stage | Canopy-region masks | Treetop points | Individual-crown polygons |
+RGB satellite images were obtained mainly through Google Earth Pro, including images from WorldView, QuickBird and SPOT. Image selection prioritised clear, cloud-free views acquired within the five years before annotation. Older clear images were used when recent images did not meet these requirements.
+
+The **exported image pixel size is 0.0651–0.1237 m**, calculated from the scene extent and image dimensions in pixels. It describes the ground length represented by each exported pixel; the resolution of the original satellite image depends on its source. Acquisition dates, image sources, scene locations, image dimensions and exported pixel sizes are recorded in `scene_metadata.csv`.
+
+## Scene gallery
+
+<div align="center">
+
+<img src="assets/readme/representative-scene-atlas-v3.webp" width="100%" alt="Canopy masks, treetop points and individual crown outlines across forest scenes">
+
+</div>
+
+The left two columns show canopy masks, the middle two show treetop points, and the right two show individual crown outlines. Green areas mark canopy cover, red dots mark crown apices, and coloured outlines distinguish individual crowns. The gallery includes sparse trees, dense stands, canopy gaps and trees near roads or buildings.
+
+## Annotation production
+
+Nine trained annotators completed the labels. Canopy masks were traced manually in Photoshop, and crown apices were marked with red dots in Inkscape. For individual crowns, approximately **70% of images** were annotated manually from scratch. For approximately **30% of images**, a fine-tuned Cellpose-SAM model generated initial outlines, which were then checked and corrected manually.
+
+Annotators separated crowns that the model had merged, joined fragments of the same crown, added missing crowns, removed false detections and adjusted outlines. All crown labels were checked manually, then reviewed in batches by three reviewers. One additional lead reviewer checked the complete dataset.
+
+Software checked that files could be read, images matched their labels, IDs were unique, coordinates stayed within image bounds and crown polygons were valid. Problems were corrected and checked again.
+
+## Technical validation
+
+An independent annotator labelled **214 image samples** without viewing the original labels: 59 canopy tiles, 26 treetop tiles and 129 crown images. The comparison between the two label sets is shown below.
+
+| Annotation type | Validation sample | Matching or comparison | Agreement |
 |:--|:--|:--|:--|
-| **Initial annotation** | Manual | Manual | Direct manual or model candidate |
-| **Human correction** | Required | Required | Required for every retained crown |
-| **Human confirmation** | Required | Required | Required |
-| **Automated integrity checks** | Image–mask pairing, mask validity, identifiers | Image–point pairing, coordinate bounds, identifiers | Image–annotation pairing, polygon validity, identifiers |
-| **Release gate** | Pass review and integrity checks | Pass tolerant spatial review and integrity checks | Pass boundary review and integrity checks |
+| Forest canopy masks | 59 tiles from 21 scenes | Pixel-wise binary-mask overlap | Mean IoU **0.914**; mean Dice **0.948** |
+| Treetop points | 26 tiles from 17 scenes | One-to-one matching within **15 pixels** | Mean tile F1 **0.851**; count MAE **25.0 points/tile** |
+| Individual tree crowns | 129 image patches | One-to-one matching at **IoU ≥ 0.50** | Mean image detection F1 **0.864**; median matched-crown IoU **0.807** |
 
-> [!NOTE]
-> Model assistance applies **only to approximately 30% of the individual-crown polygon workflow**. Canopy-region masks and treetop points were produced entirely through manual annotation.
+IoU and Dice measure how much the two masks overlap. Treetop F1 measures whether both annotators marked the same trees, allowing a position difference of up to 15 pixels. Count MAE gives the average difference in point counts per image tile. Crown IoU measures overlap between matched outlines, while detection F1 considers matched, missed and extra crowns.
 
-## ✅ Quality control
+### Model evaluation
 
-<div align="center">
+| Task | Models | Range of model results |
+|:--|:--|:--|
+| Canopy segmentation | U-Net, DeepLabv3+, SegFormer | Validation IoU **79.49–81.74%**; Dice **88.52–89.93%** |
+| Treetop localisation | U-Net, SegFormer, Mamba-UNet | Validation point F1 **72.65–76.33%**; count MAE **24.65–28.47 points/tile** |
+| Crown instance segmentation | Mask R-CNN, YOLOv8m-seg, Mask2Former, QueryInst, MaskDINO, StarDist-TCD | Mask AP50:95 **26.51–52.44%**; AP50 **42.73–83.84%** |
 
-<img src="assets/readme/technical-validation-core.webp" width="100%" alt="Three technical-validation analyses">
+Each model was evaluated after one training run. MaskDINO had the highest AP50:95 and AP50 among the crown models compared.
 
-</div>
+## Data access
 
-Quality control combines independent human review with automated file-level checks. Failed items return to the relevant annotation stage for correction, re-review and re-checking.
+The full dataset is available through [Zenodo DOI 10.5281/zenodo.22070748](https://doi.org/10.5281/zenodo.22070748), including canopy masks, treetop SVG files, crown images and COCO annotations, scene information and documentation. Crown annotations include cropped RGB images. The full original scene images are not included.
 
-- **Completeness and duplication:** identify missing, empty or duplicated labels.
-- **Image–annotation pairing:** verify that each annotation resolves to the intended source image.
-- **Coordinate validity:** check that treetop locations and geometries remain within image bounds.
-- **Geometry validity:** test mask readability and polygon structure.
-- **Boundary review:** inspect merged crowns, split crowns and ambiguous boundaries.
-- **File integrity:** validate identifiers, metadata, readable files and release checksums.
-- **Versioning:** freeze only human-verified, integrity-checked data packages.
+### Full dataset files
 
-## 📁 Dataset organisation
+The full dataset archive is organised as follows:
 
 ```text
 dataset/
-├── canopy_region_masks/
-│   ├── imagery/
-│   ├── masks/
-│   └── metadata/
-├── treetop_points/
-│   ├── imagery/
-│   ├── annotations/
-│   └── metadata/
-├── individual_crown_polygons/
-│   ├── imagery/
-│   └──instance_masks/
-└── manifests/
-    ├── file_inventory.csv
-    ├── checksums.sha256
-    └── provenance.csv
+├── canopy_region/                 # 27 PNG/JPEG canopy masks
+├── treetop/                       # 30 SVG point-annotation files
+├── individual_crown/
+│   └── images/                    # 5,061 RGB images, 512 × 512 px
+├── annotations/
+│   ├── instances_all.json
+│   ├── instances_train.json
+│   ├── instances_val.json
+│   └── instances_test.json
+└── scene_metadata.csv
 ```
 
-## 🔬 Intended uses
+## Real sample package
 
-- Canopy-extent and forest-cover segmentation.
-- Treetop detection, point localisation and tree-count estimation.
-- Individual-tree crown detection and instance segmentation.
-- Cross-region transfer, domain-shift and robustness studies.
-- Multi-granularity learning across region, point and instance annotations.
-- Benchmarking annotation quality-control and geospatial vision workflows.
+[`examples/real_sample_package_v1`](examples/real_sample_package_v1/) contains **12 examples** with annotation previews and the label files listed below, for exploring the labels and reading their formats.
 
-### Limitations to consider
+| Component | Examples | Demonstration files |
+|:--|--:|:--|
+| Forest canopy masks | 4 | Overlay previews, binary PNG/TIFF masks and coverage statistics |
+| Treetop points | 4 | Overlay previews and CSV/JSON coordinates |
+| Individual tree crowns | 4 | RGB images, contour previews, TIFF instance masks and area CSV files |
 
-- The three annotation components have different spatial units and must not be treated as interchangeable labels.
-- Geographic coverage is global but not spatially uniform.
-- Visible crown boundaries can remain ambiguous under overlap, shadow and heterogeneous canopy structure.
-- Point-level agreement should be evaluated with an explicit spatial tolerance.
-- Source-imagery rights and annotation-product licences must be checked separately before redistribution.
+## Usage notes and limitations
 
-## 📦 Data access
+For crown segmentation, use the supplied training, validation and test sets. Match labels to images by image ID and check their alignment when reading the data.
 
-A representative package containing 12 real examples is available in [`examples/real_sample_package_v1`](examples/real_sample_package_v1/). The package includes all three annotation components, component-level documentation, a file manifest and SHA-256 checksums.
-The canopy-region, treetop and individual-crown components, together with the associated RGB imagery, scene-level metadata, are publicly available from Zenodo at https://doi.org/10.5281/zenodo.22070748. 
+Shadows, overlapping crowns and image edges can lead to missing labels or incomplete outlines. Neighbouring crowns in dense stands may be mistaken for one crown, while a large crown with several visible peaks may be split into several. Understorey trees hidden beneath the upper canopy are usually not visible in the images.
 
-## ⚖️ Licensing and provenance
+When comparing models, state the allowed position error for treetop localisation. For crown segmentation, check whether crowns are found correctly and completely, and compare predicted outlines with manual outlines using their overlap.
 
-This repository uses separate terms for different asset classes; there is no repository-wide licence covering every file.
+## Licences and image sources
+
+Different terms apply to annotation data, software and imagery:
 
 - **Annotation data and metadata:** [CC BY 4.0](LICENSE-DATA.md).
 - **Software and scripts:** [MIT License](LICENSE-CODE).
-- **Third-party source imagery:** governed by source-specific terms described in the [third-party imagery notice](THIRD_PARTY_NOTICES.md).
+- **Third-party images and their previews:** follow the use and attribution requirements of Google Earth and the image providers, as described in the [third-party imagery notice](THIRD_PARTY_NOTICES.md).
 
-## 🤝 Contributors and institutions
+## Contributors and institutions
 
 <div align="center">
-
-<h3>Project contributors</h3>
 
 <table>
   <tr>
-    <td align="center" width="20%">
-      <a href="https://github.com/njyunting">
-        <img src="https://avatars.githubusercontent.com/u/78784756?v=4" width="92" alt="Ting Yun — @njyunting"><br>
-        <sub><b>Ting Yun</b></sub><br>
-        <sub>Lead author · @njyunting</sub>
-      </a>
+    <td align="center" width="33.33%">
+      <a href="https://github.com/njyunting"><img src="https://avatars.githubusercontent.com/u/78784756?v=4" width="92" alt="Yun Ting — @njyunting"><br><sub><b>Yun Ting</b></sub></a><br>
+      <sub>Corresponding author · Nanjing Forestry University</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/zhang-huaiqing.svg" width="92" alt="Zhang Huaiqing"><br>
-      <sub><b>Zhang Huaiqing</b></sub><br>
-      <sub>Chinese Academy of Forestry</sub>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/zhang-huaiqing.svg" width="92" alt="Huaiqing Zhang"><br><sub><b>Huaiqing Zhang</b></sub><br>
+      <sub>Corresponding author · Chinese Academy of Forestry</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Yang Wenjie"><br>
-      <sub><b>Yang Wenjie</b></sub><br>
-      <sub>Contributor</sub>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang</b></sub><br>
+      <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/bai-chenhui.svg" width="92" alt="Bai Chenhui"><br>
-      <sub><b>Bai Chenhui</b></sub><br>
-      <sub>Contributor</sub>
+  </tr>
+  <tr>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu</b></sub><br>
+      <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
-    <td align="center" width="20%">
-      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Xu Enhao"><br>
-      <sub><b>Xu Enhao</b></sub><br>
-      <sub>Contributor</sub>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
+      <sub>Project contributor · East China Normal University</sub>
+    </td>
+    <td align="center" width="33.33%">
+      <img src="assets/readme/contributors/li-zhang.svg" width="92" alt="Li Zhang"><br><sub><b>Li Zhang</b></sub><br>
+      <sub>Manuscript author · Nanjing Forestry University</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="3">
+      <img src="assets/readme/contributors/bai-chenhui.svg" width="92" alt="Chenhui Bai"><br><sub><b>Chenhui Bai</b></sub><br>
+      <sub>Project contributor</sub>
     </td>
   </tr>
 </table>
-
-<br><br>
-
-| Nanjing Forestry University | Chinese Academy of Forestry |
-|:--:|:--:|
-| **南京林业大学** | **中国林业科学研究院** |
-
-</div>
-
-The contributor wall recognises contributions to data curation, annotation, validation, software, visualisation and scholarly communication. Affiliations and contribution roles are listed in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
-
----
-
-<div align="center">
-
-**Three annotation levels. One globally distributed forest benchmark.**
 
 </div>

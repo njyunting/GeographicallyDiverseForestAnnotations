@@ -2,17 +2,19 @@
 
 [中文说明](README.zh-CN.md)
 
-This compact package contains real, human-verified examples from the three annotation components of **Global Forest Crown Annotations**. It supports format inspection, visualisation and data-loader development.
+This compact package contains real, human-reviewed examples from the three annotation components of **Geographically Diverse Forest Annotation Dataset**. It supports format inspection, visualisation and data-loader development.
+
+These are demonstration formats. The full dataset uses RGB PNG/JPEG canopy masks, SVG treetop markers and COCO JSON crown annotations. See the [main README](../../README.md) for the release inventory and data-access link.
 
 ## Package summary
 
-| Component | Samples | Spatial coverage per scene | Included data |
+| Component | Samples | Example image size | Included data |
 |:--|--:|:--:|:--|
-| Canopy-region masks | 4 | **2 km × 2 km (4 km²)** | Overlay previews, binary PNG/TIFF masks and coverage statistics |
-| Treetop points | 4 | **2 km × 2 km (4 km²)** | Overlay previews and point coordinates in CSV/JSON |
-| Individual-crown polygons | 4 | — | RGB images, contour previews, TIFF instance masks and crown-area tables |
+| Canopy-region masks | 4 | 1024 × 1024 px | Overlay previews, binary PNG/TIFF masks and coverage statistics |
+| Treetop points | 4 | 1024 × 1024 px | Overlay previews and point coordinates in CSV/JSON |
+| Individual-crown polygons | 4 | 512 × 512 px | RGB images, contour previews, TIFF instance masks and crown-area tables |
 
-The canopy examples span approximately 17–93% labelled canopy coverage. The treetop examples span 50–358 independently hand-drawn points per scene. The crown examples contain 163–243 manually delineated instances per image.
+The canopy examples span approximately 17–93% labelled canopy coverage. The treetop examples span 50–358 independently hand-drawn points per example. The crown examples contain 163–243 manually delineated instances per image.
 
 ## Directory structure
 
@@ -32,8 +34,8 @@ Each component directory contains its own README and one folder per sample. `man
 
 - Image coordinates use a top-left origin, with `x` increasing rightward and `y` increasing downward.
 - Canopy masks are binary raster labels aligned to 1024 × 1024 preview coordinates.
-- Treetop coordinates are integer pixel locations in 1024 × 1024 scenes.
-- Each canopy-region and treetop scene represents a ground area of 2 km × 2 km (4 km²).
+- Treetop coordinates are integer pixel locations in 1024 × 1024 example images.
+- The manuscript's 2 km × 2 km extent describes full source scenes. This package records example pixel dimensions but does not supply a per-example geographic transform or ground footprint; do not infer ground area from preview size.
 - Individual-crown TIFF masks use `0` for background and positive integer IDs for crown instances in 512 × 512 images.
 
 ## Provenance note

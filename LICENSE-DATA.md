@@ -1,6 +1,6 @@
 # Data licence / 数据许可
 
-Except where otherwise noted, annotation data and metadata created by the Global Forest Crown Annotations contributors are licensed under the **Creative Commons Attribution 4.0 International licence (CC BY 4.0)**.
+Except where otherwise noted, annotation data and metadata created by the Geographically Diverse Forest Annotation Dataset contributors are licensed under the **Creative Commons Attribution 4.0 International licence (CC BY 4.0)**.
 
 Licence deed: <https://creativecommons.org/licenses/by/4.0/>
 
@@ -38,7 +38,7 @@ Copyright and permitted uses of excluded material remain governed by the relevan
 
 Recommended attribution:
 
-> Global Forest Crown Annotations contributors (2026). *Global Forest Crown Annotations: Canopy-Region Masks, Treetop Points, and Individual-Crown Polygons*, Version 1.0. CC BY 4.0.
+> Geographically Diverse Forest Annotation Dataset contributors (2026). *Geographically Diverse Forest Annotation Dataset*, Version 1.0. CC BY 4.0.
 
 ## Disclaimer
 
