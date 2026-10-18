@@ -169,8 +169,8 @@ IoU and Dice measure how much the two masks overlap. Treetop F1 measures whether
 
 | Task | Models | Range of model results |
 |:--|:--|:--|
-| Canopy segmentation | U-Net, DeepLabv3+, SegFormer | Validation IoU **79.49–81.74%**; Dice **88.52–89.93%** |
-| Treetop localisation | U-Net, SegFormer, Mamba-UNet | Validation point F1 **72.65–76.33%**; count MAE **24.65–28.47 points/tile** |
+| Canopy segmentation | U-Net, DeepLabv3+, SegFormer | Test IoU **79.49–81.74%**; Dice **88.52–89.93%** |
+| Treetop localisation | U-Net, SegFormer, Mamba-UNet | Test point F1 **72.65–76.33%**; count MAE **24.65–28.47 points/tile** |
 | Crown instance segmentation | Mask R-CNN, YOLOv8m-seg, Mask2Former, QueryInst, MaskDINO, StarDist-TCD | Mask AP50:95 **26.51–52.44%**; AP50 **42.73–83.84%** |
 
 Each model was evaluated after one training run. MaskDINO had the highest AP50:95 and AP50 among the crown models compared.
