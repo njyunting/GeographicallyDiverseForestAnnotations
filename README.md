@@ -21,7 +21,7 @@
 
 This geographically diverse forest annotation dataset contains satellite colour (RGB) images from 19 countries and three types of labels:
 
-- **Forest canopy masks:** delineate the area covered by tree crowns.
+- **Forest canopy masks:** label the area covered by forest canopy.
 - **Treetop points:** mark each tree's crown apex with a color dot.
 - **Individual tree crown polygons:** delineate the dripline of the individual tree crown.
 
