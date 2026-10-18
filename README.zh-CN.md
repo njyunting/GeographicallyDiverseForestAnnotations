@@ -169,8 +169,8 @@ IoU 和 Dice 衡量两套掩膜有多少区域重叠。树顶点 F1 衡量两位
 
 | 任务 | 模型 | 各模型的结果范围 |
 |:--|:--|:--|
-| 冠层分割 | U-Net、DeepLabv3+、SegFormer | 验证集 IoU **79.49–81.74%**；Dice **88.52–89.93%** |
-| 树顶点定位 | U-Net、SegFormer、Mamba-UNet | 验证集点 F1 **72.65–76.33%**；计数 MAE **24.65–28.47 点/块** |
+| 冠层分割 | U-Net、DeepLabv3+、SegFormer | 测试集 IoU **79.49–81.74%**；Dice **88.52–89.93%** |
+| 树顶点定位 | U-Net、SegFormer、Mamba-UNet | 测试集点 F1 **72.65–76.33%**；计数 MAE **24.65–28.47 点/块** |
 | 树冠实例分割 | Mask R-CNN、YOLOv8m-seg、Mask2Former、QueryInst、MaskDINO、StarDist-TCD | 掩膜 AP50:95 **26.51–52.44%**；AP50 **42.73–83.84%** |
 
 每个模型训练一次后进行评估。在比较的树冠模型中，MaskDINO 的 AP50:95 和 AP50 最高。
