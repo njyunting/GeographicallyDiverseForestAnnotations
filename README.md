@@ -22,21 +22,21 @@
 This geographically diverse forest annotation dataset contains satellite colour (RGB) images from 19 countries and three types of labels:
 
 - **Forest canopy masks:** delineate the area covered by tree crowns.
-- **Treetop points:** mark each tree's crown apex with a red dot.
-- **Individual tree crown polygons:** trace the outline of each tree crown.
+- **Treetop points:** mark each tree's crown apex with a color dot.
+- **Individual tree crown polygons:** delineate the dripline of the individual tree crown.
 
 ### Applications and research value
 
-- **Measure canopy cover and study forest structure.** Canopy masks can be used to calculate canopy area and cover percentage, identify gaps, and study whether canopy forms continuous cover or separate patches. Models trained on these labels can identify canopy cover in images for forest cover surveys, urban tree cover mapping and comparisons among forest stands.
-- **Locate and count trees, and study their distribution.** Treetop points can be used to train and test models that locate trees in images and estimate their number, density and distribution. Researchers can also study how to train tree detection models using position markers alone, reducing the need to trace every crown.
+- **Measure canopy cover and study forest structure.** Canopy masks can be used to calculate canopy area and cover percentage, identify gaps, and study whether canopy forms continuous cover or separate patches. Models trained on these labels can identify canopy cover in satellite images for forest cover surveys and urban tree cover landscape.
+- **Locate and count trees, and study their distribution**. Treetop points can be used to train and test models that locate trees in satellite images and estimate their number, density and distribution. Researchers can also change the treetop point size and study how to train tree detection models using position markers alone, reducing the need to trace every crown.
 - **Separate neighbouring crowns and measure individual crown size and shape.** Crown polygons can be used to train individual crown segmentation models, extract crown outlines, areas and shapes, and compare crown sizes within a stand. In dense areas with touching or overlapping crowns, the manual outlines help check whether a model misses crowns or merges several crowns into one.
 
 Forests differ across regions in crown shape, density, background and imaging conditions. These labels can be used to study whether a model trained in one region still identifies trees accurately in another. They also allow comparisons across sparse trees, dense stands and complex backgrounds, helping researchers identify missed and false detections, improve recognition methods and reduce manual labelling in large-area surveys.
 
 | Annotation type | Dataset size | Scene or image size | File format |
 |:--|:--|:--|:--|
-| **Forest canopy masks** | **27 masks; 108 km²** | 2 km × 2 km per scene | RGB mask images in PNG/JPEG |
-| **Treetop points** | **1,648,847 points in 30 SVG files; 120 km²** | 2 km × 2 km per scene | SVG vector markers |
+| **Forest canopy masks** | **27 masks; 108 km²** | 2 km × 2 km per scene | RGB mask images in PNG/JPEG opened by photoshop software |
+| **Treetop points** | **1,648,847 points in 30 SVG files; 120 km²** | 2 km × 2 km per scene | SVG vector markers opened by Inkscape 1.0 software. |
 | **Individual tree crown polygons** | **299,906 annotations in 5,061 RGB images** | 512 × 512 pixels per image | PNG/JPEG images and COCO JSON annotations |
 
 ### Image and annotation examples
@@ -238,8 +238,8 @@ Different terms apply to annotation data, software and imagery:
       <sub>Corresponding author · Chinese Academy of Forestry</sub>
     </td>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang</b></sub><br>
-      <sub>Co-first author · Nanjing Forestry University</sub>
+      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
+      <sub>Project contributor · East China Normal University</sub>
     </td>
   </tr>
   <tr>
@@ -248,8 +248,8 @@ Different terms apply to annotation data, software and imagery:
       <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
-      <sub>Project contributor · East China Normal University</sub>
+      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang</b></sub><br>
+      <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
     <td align="center" width="33.33%">
       <img src="assets/readme/contributors/li-zhang.svg" width="92" alt="Li Zhang"><br><sub><b>Li Zhang</b></sub><br>
