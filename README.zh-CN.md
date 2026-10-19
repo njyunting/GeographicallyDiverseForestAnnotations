@@ -238,18 +238,18 @@ dataset/
       <sub>通讯作者 · 中国林业科学研究院</sub>
     </td>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang · 杨文杰</b></sub><br>
-      <sub>共同第一作者 · 南京林业大学</sub>
+      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
+      <sub>项目贡献者 · 华东师范大学</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu · 许恩浩</b></sub><br>
+      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang · 杨文杰</b></sub><br>
       <sub>共同第一作者 · 南京林业大学</sub>
     </td>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/ma-lingfei.svg" width="92" alt="Lingfei Ma"><br><sub><b>Lingfei Ma</b></sub><br>
-      <sub>项目贡献者 · 华东师范大学</sub>
+      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu · 许恩浩</b></sub><br>
+      <sub>共同第一作者 · 南京林业大学</sub>
     </td>
     <td align="center" width="33.33%">
       <img src="assets/readme/contributors/li-zhang.svg" width="92" alt="Li Zhang"><br><sub><b>Li Zhang</b></sub><br>
