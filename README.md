@@ -86,7 +86,7 @@ Forest canopy masks delineate the area covered by tree crowns, including isolate
 
 Crown apices are identified from crown shape and foliage texture. In views of conifers from above, branch and foliage patterns converge towards the crown centre, indicating the apex. In angled views, the visible top of the crown is used. Annotators mark these locations with red dots in Inkscape. For broad-leaved trees and other crowns without a clear apex, they estimate and mark the crown centre from its outline and texture.
 
-The release contains **1,648,847 points in 30 SVG files**, each corresponding to a **2 km × 2 km** scene.
+The release contains **1,648,847 points in 30 SVG files** **created using Inkscape 1.0**, each corresponding to a **2 km × 2 km** scene.
 
 <details>
 <summary>Details for reading SVG markers</summary>
@@ -244,11 +244,11 @@ Different terms apply to annotation data, software and imagery:
   </tr>
   <tr>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu</b></sub><br>
+      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang</b></sub><br>
       <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
     <td align="center" width="33.33%">
-      <img src="assets/readme/contributors/yang-wenjie.svg" width="92" alt="Wenjie Yang"><br><sub><b>Wenjie Yang</b></sub><br>
+      <img src="assets/readme/contributors/xu-enhao.svg" width="92" alt="Enhao Xu"><br><sub><b>Enhao Xu</b></sub><br>
       <sub>Co-first author · Nanjing Forestry University</sub>
     </td>
     <td align="center" width="33.33%">
