@@ -163,6 +163,14 @@ An independent annotator labelled **214 image samples** without viewing the orig
 | Treetop points | 26 tiles from 17 scenes | One-to-one matching within **15 pixels** | Mean tile F1 **0.851**; count MAE **25.0 points/tile** |
 | Individual tree crowns | 129 image patches | One-to-one matching at **IoU ≥ 0.50** | Mean image detection F1 **0.864**; median matched-crown IoU **0.807** |
 
+<div align="center">
+
+<img src="assets/readme/independent-reannotation-comparison.png" width="100%" alt="Comparison of original annotations and independent re-annotations for canopy masks, treetop points and individual crowns">
+
+</div>
+
+From left to right: canopy masks, treetop points and individual crown polygons. From top to bottom: source images, original annotations, independent re-annotations and agreement maps.
+
 IoU and Dice measure how much the two masks overlap. Treetop F1 measures whether both annotators marked the same trees, allowing a position difference of up to 15 pixels. Count MAE gives the average difference in point counts per image tile. Crown IoU measures overlap between matched outlines, while detection F1 considers matched, missed and extra crowns.
 
 ### Model evaluation
