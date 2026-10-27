@@ -121,13 +121,13 @@ The crown images are split **by source scene** into training, validation and tes
 
 <div align="center">
 
-<img src="assets/readme/geographic-distribution-sd10-2.webp" width="100%" alt="Geographic distribution with annotation examples">
+<img src="assets/readme/geographic-distribution.png" width="100%" alt="Geographic sampling distribution and annotation statistics">
 
 </div>
 
 The dataset covers **19 countries**: Angola, Australia, Austria, Brazil, Canada, China, Denmark, Finland, Germany, India, Italy, Japan, Lebanon, Russia, Spain, Sweden, Switzerland, Ukraine and the United States. It includes coniferous, broad-leaved, mixed and planted forests, with sparse trees, scattered canopy patches and dense continuous canopy, as well as trees in farmland, cities and surrounding areas.
 
-Triangles, stars and circles mark scene locations for canopy masks, treetop points and individual crowns, respectively. Labels on the surrounding examples match their locations on the map.
+Triangles, stars and circles mark scene locations for canopy masks, treetop points and individual crowns, respectively. The charts below the map show canopy annotation scene area, treetop point counts and individual crown counts by forest and vegetation type.
 
 ### Image sources and pixel size
 
